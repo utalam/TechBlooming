@@ -11,68 +11,65 @@
             padding: 20px;
             background-color: #f4f4f4;
         }
-        .form-container {
-            max-width: 600px;
+        .news-container {
+            max-width: 800px;
             margin: auto;
-            background: white;
             padding: 20px;
+            background: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .form-group {
-            margin-bottom: 15px;
+        .news-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
-        input[type="text"], input[type="date"], textarea {
+        .news-thumbnail {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
+            max-height: 200px;
+            object-fit: cover;
             border-radius: 4px;
         }
-        input[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
+        .news-date {
+            font-size: 0.9em;
+            color: #666;
         }
-        input[type="submit"]:hover {
-            background-color: #218838;
+        .news-title {
+            margin: 10px 0;
+            font-size: 1.4em;
+        }
+        .news-description {
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Digital Newsroom - Update News</h2>
-        <form action="submit_news.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
-            </div>
-            <div class="form-group">
-                <label for="thumbnail">Thumbnail:</label>
-                <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required>
-            </div>
-            <div class="form-group">
-                <label for="description1">Description Line 1:</label>
-                <textarea id="description1" name="description1" rows="2" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="description2">Description Line 2:</label>
-                <textarea id="description2" name="description2" rows="2" required></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Update News">
-            </div>
-        </form>
+    <div class="news-container">
+        <h1>Digital Newsroom</h1>
+        
+        <!-- News Item 1 -->
+        <div class="news-item">
+            <img src="path/to/thumbnail1.jpg" alt="News Thumbnail 1" class="news-thumbnail">
+            <p class="news-date">2025-02-19</p>
+            <h2 class="news-title">Breaking News Title 1</h2>
+            <p class="news-description">This is the first line of the news description, providing an overview of the event or story. Here's more detail about what happened or why it's significant.</p>
+        </div>
+
+        <!-- News Item 2 -->
+        <div class="news-item">
+            <img src="path/to/thumbnail2.jpg" alt="News Thumbnail 2" class="news-thumbnail">
+            <p class="news-date">2025-02-18</p>
+            <h2 class="news-title">Important Update Title 2</h2>
+            <p class="news-description">Here's a description of the second news piece, explaining the context, impact or next steps related to the news item. It could be about local, national, or global events.</p>
+        </div>
+
+        <!-- Add more news items here as needed -->
+
     </div>
 </body>
 </html>
