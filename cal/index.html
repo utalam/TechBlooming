@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>Tech Age Calculator - Top 50 U.S. Tech Companies</title>
+    <meta name="description" content="Calculate the age of the top 50 U.S. tech companies (NYSE & NASDAQ) with this sleek, futuristic tool. Explore company founding years, stock details, and real-time ages in a high-tech interface.">
+    <meta name="keywords" content="tech age calculator, technology companies, NYSE, NASDAQ, company age, stock calculator, US tech firms, futuristic design">
+    <meta name="author" content="xAI Grok">
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="Tech Age Calculator - Top 50 U.S. Tech Companies">
+    <meta property="og:description" content="Discover the ages of top U.S. tech giants like Apple, NVIDIA, and Microsoft with this dynamic calculator featuring a neon-lit, high-tech design.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/tech-age-calculator"> <!-- Replace with your URL -->
+    <meta property="og:image" content="https://yourdomain.com/images/tech-icon.png"> <!-- Replace with your icon URL -->
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Tech Age Calculator - Top 50 U.S. Tech Companies">
+    <meta name="twitter:description" content="A futuristic tool to calculate the age of leading U.S. tech companies on NYSE and NASDAQ.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/tech-icon.png"> <!-- Replace with your icon URL -->
+    <!-- Additional SEO Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <link rel="icon" href="images/robots01.jpg" type="image/jpg"> <!-- Replace with your favicon -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="images/robots01.jpg" alt="Tech Icon" id="header-icon">
+        <h1>Tech Age Calculator</h1>
+        <p>Discover the Age of Tech Titans</p>
+        <br/>
 
+        <p>Dive into the timeline of innovation with the Tech Age Calculator, a cutting-edge tool that reveals the ages of the top 50 U.S. technology companies listed on NYSE and NASDAQ. From Apple to C3.ai, select a company from the neon-lit dropdown or explore the sortable table—featuring company names, stock symbols with exchange tags, founding years, and dynamic ages calculated in real-time. Each stock links to a Google search, which let you access the current stock price of each tech titans.</p>
+    </header>
+    <main>
+        <section id="calculator">
+            <select id="company-select">
+                <option value="">Select a Company</option>
+                <!-- Options added via JavaScript -->
+            </select>
+            <button id="calculate-btn">Calculate Age</button>
+            <div id="result"></div>
+        </section>
+        <section id="company-table">
+            <h2>All Companies</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th data-sort="name">Company</th>
+                        <th data-sort="stock">Stock</th>
+                        <th data-sort="founded">Founded</th>
+                        <th data-sort="age">Age (Years)</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Rows added via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>This is created by xAI Grok</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
