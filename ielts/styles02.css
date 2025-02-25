@@ -1,0 +1,55 @@
+body {
+    font-family: 'Comic Sans MS', Arial, sans-serif; /* Playful font */
+    text-align: center;
+    background-color: #ffe066; /* Bright yellow background */
+    margin: 0;
+    padding: 30px;
+}
+
+h1 {
+    color: #ff3366; /* Hot pink title */
+    font-size: 48px; /* Bigger title */
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+h3 {
+    color: #ff6600; /* Orange for subtitles */
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+#game-board {
+    background: #fff0f5; /* Light pink container */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    width: 700px; /* Slightly wider */
+    margin: 0 auto;
+    border: 3px solid #66ccff; /* Blue border for pop */
+}
+
+.word-list {
+    text-align: left; /* Align word entries to the left */
+}
+
+.word-entry {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9; /* Light gray background for each entry */
+    border-radius: 10px;
+    border: 2px solid #ff99cc; /* Pink border */
+}
+
+.word-entry p {
+    margin: 5px 0;
+}
+
+.word-entry strong {
+    color: #ff3366; /* Pink for the word */
+    font-size: 24px;
+}
+
+.word-entry em {
+    color: #333; /* Dark gray for meaning/example labels */
+}

@@ -1,0 +1,133 @@
+body {
+    font-family: 'Comic Sans MS', Arial, sans-serif;
+    text-align: center;
+    background-color: #ffe066;
+    margin: 0;
+    padding: 30px;
+}
+
+h1 {
+    color: #ff3366;
+    font-size: 48px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    color: #28a428;
+    font-size: 25px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#game-board {
+    background: #fff0f5;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 700px;
+    margin: 0 auto;
+    border: 3px solid #66ccff;
+}
+
+#score-display {
+    background: #fff0f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px auto;
+    border: 2px solid #66ccff;
+}
+
+#score-display p {
+    font-size: 28px;
+    color: #ff3366;
+    margin: 0;
+}
+
+#score {
+    font-weight: bold;
+    color: #33cc33;
+}
+
+#scrambled-letters {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff6600;
+    letter-spacing: 15px;
+    margin: 25px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#guess-input {
+    padding: 20px;
+    font-size: 24px;
+    width: 350px;
+    border: 2px solid #ff99cc;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: #f9f9f9;
+}
+
+button {
+    padding: 20px 40px;
+    font-size: 24px;
+    margin: 15px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#submit-guess {
+    background-color: #33cc33;
+}
+
+#submit-guess:hover {
+    background-color: #28a428;
+}
+
+#new-word {
+    background-color: #ff3366;
+}
+
+#new-word:hover {
+    background-color: #cc2952;
+}
+
+#show-answer {
+    background-color: #ff9900;
+}
+
+#show-answer:hover {
+    background-color: #e68a00;
+}
+
+#reset-score {
+    background-color: #6666ff;
+}
+
+#reset-score:hover {
+    background-color: #4d4dff;
+}
+
+.chapter-btn { /* Replaces #play-game */
+    background-color: #412dfc;
+}
+
+.chapter-btn:hover {
+    background-color: #412dfc; /* Darker blue for contrast */
+}
+
+#feedback {
+    font-size: 22px;
+    margin-top: 25px;
+    color: #333;
+    line-height: 1.6;
+}
