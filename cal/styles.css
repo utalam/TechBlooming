@@ -1,3 +1,4 @@
+/* Existing styles (kept for context, update as needed) */
 body {
     margin: 0;
     padding: 0;
@@ -15,7 +16,7 @@ header {
 }
 
 #header-icon {
-    width: 60px; /* Smaller for mobile */
+    width: 60px;
     height: 60px;
     margin-bottom: 1rem;
     border-radius: 50%;
@@ -24,7 +25,7 @@ header {
 }
 
 header h1 {
-    font-size: clamp(2rem, 5vw, 3.25rem); /* Scales between 32px and 52px */
+    font-size: clamp(2rem, 5vw, 3.25rem);
     margin: 0;
     color: #00d4ff;
     text-transform: uppercase;
@@ -33,14 +34,14 @@ header h1 {
 }
 
 header p {
-    font-size: clamp(1rem, 2.5vw, 1.125rem); /* Scales between 16px and 18px */
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
     color: #a0a0a0;
     margin: 0.625rem 0 0;
     letter-spacing: 0.0625rem;
 }
 
 .header-desc p {
-    font-size: clamp(0.875rem, 2vw, 1rem); /* Scales between 14px and 16px */
+    font-size: clamp(0.875rem, 2vw, 1rem);
     max-width: 90%;
     margin: 1rem auto;
     line-height: 1.5;
@@ -53,7 +54,7 @@ header p {
 
 select, button {
     padding: 0.75rem 1.25rem;
-    font-size: clamp(0.875rem, 2vw, 1rem); /* Scales between 14px and 16px */
+    font-size: clamp(0.875rem, 2vw, 1rem);
     background: rgba(255, 255, 255, 0.05);
     color: #00d4ff;
     border: 1px solid #00d4ff;
@@ -62,7 +63,7 @@ select, button {
     cursor: pointer;
     transition: all 0.3s ease;
     width: 90%;
-    max-width: 300px; /* Limits width on larger screens */
+    max-width: 300px;
 }
 
 select:hover, button:hover {
@@ -72,7 +73,7 @@ select:hover, button:hover {
 }
 
 #result {
-    font-size: clamp(1.25rem, 3vw, 1.5rem); /* Scales between 20px and 24px */
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
     color: #fff;
     margin-top: 1.25rem;
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
@@ -85,29 +86,29 @@ select:hover, button:hover {
 }
 
 #company-table h2 {
-    font-size: clamp(1.5rem, 3.5vw, 1.75rem); /* Scales between 24px and 28px */
+    font-size: clamp(1.5rem, 3.5vw, 1.75rem);
     color: #00d4ff;
     text-align: center;
     margin-bottom: 1.25rem;
 }
 
 .table-wrapper {
-    overflow-x: auto; /* Allows horizontal scrolling on small screens */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.03);
-    min-width: 600px; /* Ensures table scrolls on small screens */
+    min-width: 600px;
 }
 
 th, td {
     padding: 0.9375rem;
     text-align: left;
     border-bottom: 1px solid rgba(0, 212, 255, 0.15);
-    font-size: clamp(0.75rem, 1.5vw, 0.875rem); /* Scales between 12px and 14px */
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
 }
 
 th {
@@ -145,6 +146,67 @@ tr:hover {
     transition: all 0.3s ease;
 }
 
+/* New Contact Form Styles */
+#contact {
+    text-align: center;
+    padding: 5% 4%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#contact h2 {
+    font-size: clamp(1.5rem, 3.5vw, 1.75rem);
+    color: #00d4ff;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px; /* Limits width on large screens */
+    margin: 0 auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    background: rgba(255, 255, 255, 0.05);
+    color: #e6e6e6;
+    border: 1px solid #00d4ff;
+    border-radius: 5px;
+    font-family: 'Exo 2', sans-serif;
+    transition: all 0.3s ease;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical; /* Allows vertical resize only */
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+form button {
+    width: auto;
+    padding: 0.75rem 2rem;
+    background: rgba(0, 212, 255, 0.2);
+}
+
+form button:hover {
+    background: #00d4ff;
+    color: #1a1a1a;
+}
+
 footer {
     text-align: center;
     padding: 2%;
@@ -153,7 +215,7 @@ footer {
 }
 
 footer p {
-    font-size: clamp(0.75rem, 1.5vw, 0.875rem); /* Scales between 12px and 14px */
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
     color: #a0a0a0;
     margin: 0;
 }
@@ -169,17 +231,21 @@ footer p {
         height: 40px;
     }
 
-    select, button {
+    select, button, input, textarea {
         width: 100%;
-        max-width: none; /* Full width on mobile */
+        max-width: none;
     }
 
     .table-wrapper {
-        margin: 0 -1rem; /* Extends to edges with scroll */
+        margin: 0 -1rem;
     }
 
     table {
-        font-size: 0.75rem; /* Smaller text on mobile */
+        font-size: 0.75rem;
+    }
+
+    #contact {
+        padding: 3rem 1rem;
     }
 }
 
@@ -190,5 +256,9 @@ footer p {
 
     .header-desc p {
         font-size: 0.875rem;
+    }
+
+    form {
+        gap: 0.75rem;
     }
 }
