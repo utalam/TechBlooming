@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>NASDAQ 100 Age Calculator</title>
+    <meta name="description" content="Calculate the age of all 100 NASDAQ 100 companies with this sleek, futuristic tool. Explore founding years, stock details, market values, and real-time ages in a high-tech interface.">
+    <meta name="keywords" content="NASDAQ 100 age calculator, technology companies, NASDAQ, company age, stock calculator, market value, futuristic design">
+    <meta name="author" content="xAI Grok">
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="NASDAQ 100 Age Calculator">
+    <meta property="og:description" content="Discover the ages and market values of all NASDAQ 100 giants like Apple, NVIDIA, and Microsoft with this dynamic calculator featuring a neon-lit design.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techblooming.netlify.app/cal/">
+    <meta property="og:image" content="images/robots01.jpg">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NASDAQ 100 Age Calculator">
+    <meta name="twitter:description" content="A futuristic tool to calculate the age and view market values of all 100 NASDAQ 100 companies.">
+    <meta name="twitter:image" content="images/robots01.jpg">
+    <!-- Additional SEO Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <link rel="icon" href="images/robots01.jpg" type="image/jpg">
+    <link rel="stylesheet" href="styles-nasdaq.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CY5N9HSXXJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CY5N9HSXXJ');
+    </script>
+</head>
+<body>
+    <header>
+        <img src="images/robots01.jpg" alt="Tech Icon" id="header-icon">
+        <h1>NASDAQ 100 Age Calculator</h1>
+        <p>Discover the Age of NASDAQ Giants</p>
+        <div class="header-desc">
+            <p>Explore the timeline of innovation with the NASDAQ 100 Age Calculator, a cutting-edge tool that reveals the ages and approximate market values of all 100 companies in the NASDAQ 100 index. From Apple to Zoom, select a company from the neon-lit dropdown or browse the sortable table—featuring company names, stock symbols, founding years, market caps, and dynamic ages calculated in real-time. Each stock links to a Google search for current stock prices.</p>
+        </div>
+    </header>
+    <main>
+        <section id="calculator">
+            <select id="company-select">
+                <option value="">Select a Company</option>
+                <!-- Options added via JavaScript -->
+            </select>
+            <button id="calculate-btn">Calculate Age</button>
+            <div id="result"></div>
+        </section>
+        <section id="company-table">
+            <h2>All NASDAQ 100 Companies</h2>
+            <input type="text" id="search-box" placeholder="Search by Name or Stock...">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-sort="name">Company</th>
+                            <th data-sort="stock">Stock</th>
+                            <th data-sort="founded">Founded</th>
+                            <th data-sort="age">Age (Years)</th>
+                            <th data-sort="marketValue">Market Value (as of feb 2025)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Rows added via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/meoebpbn" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>This is created by xAI Grok</p>
+    </footer>
+    <script src="script-nasdaq.js"></script>
+</body>
+</html>
