@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingualism Knowledge Test</title>
+    <link rel="stylesheet" href="styles-ling.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Bilingualism Knowledge Test</h1>
+            <p>Assess Your Understanding of Bilingualism Concepts</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">Bilingualism</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Quizzes</a></li>
+            <li><a href="#">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main class="quiz-container">
+        <div class="quiz-progress">Progress: <span id="progress">0%</span></div>
+        <div class="quiz-content" id="quiz-content">
+            <!-- Questions will be dynamically inserted via JavaScript -->
+        </div>
+
+        <div class="quiz-actions">
+            <button id="submit-all" class="submit-btn">Submit All Answers</button>
+        </div>
+
+        <div class="report" id="report">
+            <h2>Your Bilingualism Test Report</h2>
+            <div class="report-content" id="report-content" style="display: none;"></div>
+            <button id="retry-btn" class="submit-btn" style="display: none;">Retry Test</button>
+        </div>
+    </main>
+
+    <script src="script-ling.js"></script>
+</body>
+</html>
