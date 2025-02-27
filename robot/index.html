@@ -101,7 +101,10 @@
             <div class="option" onclick="selectOption('q10', 'c')">Speed-shame him: “Wow, someone’s hungry!”</div>
             <div class="option" onclick="selectOption('q10', 'd')">Team up with others to block him out</div>
         </div>
-        <button class="submit-btn" onclick="calculateResult()">Submit</button>
+        <div class="button-container">
+            <button class="submit-btn" onclick="calculateResult()">Submit</button>
+            <button class="replay-btn" onclick="replayGame()">Replay</button>
+        </div>
         <div id="result-text"></div>
         <canvas id="radar-chart"></canvas>
     </section>
