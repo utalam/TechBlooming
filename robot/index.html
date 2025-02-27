@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take the Robot Personality Test to discover your cybernetic twin! Choose a robot, answer quirky questions, and get your personality report with scores.">
+    <meta name="keywords" content="robot personality test, cybernetic twin, personality quiz, fun quiz, xAI">
+    <meta name="author" content="Jezz and xAI">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Robot Personality Test">
+    <meta property="og:description" content="Find out which robot matches your personality with this fun, interactive quiz by xAI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techblooming.netlify.app/robot/">
+    <meta property="og:image" content="04-humanoid.jpg">
+    <link rel="shortcut icon" href="04-humanoid.jpg">
     <title>Robot Personality Test</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QH34T4P47C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QH34T4P47C');
-</script>
-    
 </head>
 <body>
     <section id="header">
         <h1>Robot Personality Test</h1>
         <p>Choose your robot match, answer 10 quirky questions, and discover your cybernetic twin.</p>
-        <p class="how-to-play">How to Play: Pick a robot you think matches your vibe, then click through 10 fun scenarios to reveal your true robotic twin. Submit your answers to see your personality report and scores!</p>
+        <p class="how-to-play">How to Play: Pick a robot you think matches your vibe, then click through 10 fun scenarios to reveal your true robotic twin. Submit your answers to see your personality report and scores! This robot personality test is built with the support of xAI.</p>
     </section>
 
     <section id="robot-choice">
         <h2>Choose Your Cyber-Soul</h2>
         <div class="robot-grid">
-            <div class="robot-card" onclick="selectRobot('Articulated')"><img src="01-articulated.jpg" alt="Articulated"><p>Articulated</p></div>
-            <div class="robot-card" onclick="selectRobot('SCARA')"><img src="02-scraba.jpg" alt="SCARA"><p>SCARA</p></div>
-            <div class="robot-card" onclick="selectRobot('Delta')"><img src="03-delta.jpg" alt="Delta"><p>Delta</p></div>
-            <div class="robot-card" onclick="selectRobot('Humanoids')"><img src="04-humanoid.jpg" alt="Humanoids"><p>Humanoids</p></div>
-            <div class="robot-card" onclick="selectRobot('Quadrupeds')"><img src="05-quadrupeds.jpg" alt="Quadrupeds"><p>Quadrupeds</p></div>
-            <div class="robot-card" onclick="selectRobot('Drones')"><img src="06-drone.jpg" alt="Drones"><p>Drones</p></div>
-            <div class="robot-card" onclick="selectRobot('Swarm')"><img src="07-swarm.jpg" alt="Swarm"><p>Swarm</p></div>
-            <div class="robot-card" onclick="selectRobot('Exoskeletons')"><img src="08-exoskeletons.jpg" alt="Exoskeletons"><p>Exoskeletons</p></div>
+            <div class="robot-card" onclick="selectRobot('Articulated')"><img src="01-articulated.jpg" alt="Articulated Robot"><p>Articulated</p></div>
+            <div class="robot-card" onclick="selectRobot('SCARA')"><img src="02-scraba.jpg" alt="SCARA Robot"><p>SCARA</p></div>
+            <div class="robot-card" onclick="selectRobot('Delta')"><img src="03-delta.jpg" alt="Delta Robot"><p>Delta</p></div>
+            <div class="robot-card" onclick="selectRobot('Humanoids')"><img src="04-humanoid.jpg" alt="Humanoid Robot"><p>Humanoids</p></div>
+            <div class="robot-card" onclick="selectRobot('Quadrupeds')"><img src="05-quadrupeds.jpg" alt="Quadruped Robot"><p>Quadrupeds</p></div>
+            <div class="robot-card" onclick="selectRobot('Drones')"><img src="06-drone.jpg" alt="Drone Robot"><p>Drones</p></div>
+            <div class="robot-card" onclick="selectRobot('Swarm')"><img src="07-swarm.jpg" alt="Swarm Robots"><p>Swarm</p></div>
+            <div class="robot-card" onclick="selectRobot('Exoskeletons')"><img src="08-exoskeletons.jpg" alt="Exoskeleton Robot"><p>Exoskeletons</p></div>
         </div>
         <p id="selected-robot">Your guess: None selected yet.</p>
     </section>

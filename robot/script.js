@@ -151,20 +151,13 @@ function calculateResult() {
 }
 
 function replayGame() {
-    // Reset selected robot
     userGuess = '';
     document.querySelectorAll('.robot-card').forEach(card => card.classList.remove('selected'));
     document.getElementById('selected-robot').textContent = 'Your guess: None selected yet.';
-
-    // Reset answer options
     selectedOptions = {};
     document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-
-    // Hide results and chart
     document.getElementById('result-text').style.display = 'none';
     document.getElementById('radar-chart').style.display = 'none';
-
-    // Clear the canvas to remove the previous chart
     const canvas = document.getElementById('radar-chart');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
