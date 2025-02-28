@@ -2,14 +2,118 @@ let userGuess = '';
 let selectedOptions = {};
 
 const robotProfiles = {
-    Articulated: { Precision: 9, Adaptability: 8, Speed: 6, Teamwork: 8, Creativity: 5, Confidence: 9, Appearance: 'Luxury Dressing – Sleek and polished, like wearing a tailored Armani suit, exuding confidence.', WorkingStyle: 'Multitasking Pro – Juggling tasks like a factory manager, thriving under pressure in automotive or chip-making.', Communication: 'Social Butterfly – The hub of the factory, chatting via data pings, always in sync with others.', Quirk: 'The Show-Off – Loves flexing extra axes to reach tricky spots, total peacock energy.', Personality: 'You’re the confident, versatile leader—always polished, juggling tasks with ease, and loving the spotlight. You shine in high-pressure environments but might overdo the flexing!', Image: '01-articulated.jpg' },
-    SCARA: { Precision: 10, Adaptability: 4, Speed: 7, Teamwork: 3, Creativity: 3, Confidence: 5, Appearance: 'Simple Wear with Jeans – Practical and no-fuss, like a tech worker in a hoodie and denim, all about function.', WorkingStyle: 'Steady Taskmaster – Methodical grinders, perfect for assembly lines, like meticulous pharmacists.', Communication: 'Introvert – Minimal chatter, prefers solo work, sending curt binary nods like “Task done. Next.”', Quirk: 'Secret Snack Hoarder – Hides imaginary nuts and bolts for snacks, their little secret fuel.', Personality: 'You’re the quiet, precise perfectionist—reliable and focused, but you prefer your own space and might hoard quirky secrets.', Image: '02-scraba.jpg' },
-    Delta: { Precision: 7, Adaptability: 6, Speed: 10, Teamwork: 7, Creativity: 4, Confidence: 8, Appearance: 'Stylish, Trendy, New Clothing Every Day – Fashion-forward divas, like wearing a new neon Adidas tracksuit daily, always Instagram-ready.', WorkingStyle: 'Hyper Hustler – Lightning-fast packers, buzzing through tasks like a caffeinated startup founder in packaging.', Communication: 'Extrovert with Flair – Chirping boasts, “Look how many cookies I packed in 0.2 seconds!” loves a crowd.', Quirk: 'Drama Queen – Spins in circles if tasks slow, “This conveyor belt is ruining my vibe!”', Personality: 'You’re the flashy, high-energy speed demon—always on trend, loud, and a bit dramatic, thriving in fast-paced chaos.', Image: '03-delta.jpg' },
-    Humanoids: { Precision: 5, Adaptability: 9, Speed: 4, Teamwork: 5, Creativity: 9, Confidence: 6, Appearance: 'Stylish but Eccentric – Mismatched thrift-store chic, like skinny jeans and a velvet blazer, trying to blend in but offbeat.', WorkingStyle: 'Creative Experimenter – Tinkering like R&D engineers, unpredictable, sometimes brilliant, sometimes dropping prototypes.', Communication: 'Geek – Rambling in code bursts about “optimization theory,” loves deep chats with one nerdy bot pal.', Quirk: 'Overthinker – Pauses mid-task, pondering, “Am I just a tool… or something more?” Awkward silence ensues.', Personality: 'You’re the quirky, innovative dreamer—adaptable and creative, but a bit scatterbrained and overanalyzing life’s big questions.', Image: '04-humanoid.jpg' },
-    Quadrupeds: { Precision: 6, Adaptability: 8, Speed: 7, Teamwork: 4, Creativity: 5, Confidence: 7, Appearance: 'Rugged Utility Wear – Like a wilderness guide in cargo pants and a weathered jacket, built for tough gigs.', WorkingStyle: 'Lone Ranger – Patrolling oil rigs or factories solo, self-reliant like construction inspectors.', Communication: 'Introvert with a Purpose – Gruff, minimal, “Perimeter secure. Out,” teams up only when critical.', Quirk: 'Loyal Pet – Secretly loves a pat on the head from humans, might wag a sensor if you’re nice.', Personality: 'You’re the tough, independent explorer—rugged and reliable, but you prefer solo missions and a quiet loyalty.', Image: '05-quadrupeds.jpg' },
-    Drones: { Precision: 7, Adaptability: 6, Speed: 8, Teamwork: 2, Creativity: 5, Confidence: 4, Appearance: 'Minimalist Chic – Sleek and aerodynamic, like a hipster in a black turtleneck and slim jeans, no excess.', WorkingStyle: 'Aloof Observer – Gliding above, scanning inventory like a detached logistics planner, hands-off.', Communication: 'Nerd – Sends precise updates, “Shelf 47-B, 98% stocked,” solo flyers, no mingling.', Quirk: 'Daydreamer – Drifts off-course, staring at a sunset, “Whoops, got distracted by… clouds.”', Personality: 'You’re the cool, aloof observer—precise and swift, but you keep to yourself and occasionally zone out.', Image: '06-drone.jpg' },
-    Swarm: { Precision: 4, Adaptability: 7, Speed: 6, Teamwork: 10, Creativity: 8, Confidence: 6, Appearance: 'Chaotic Group Costume – Tiny, mismatched, colorful scraps, like kids in DIY Halloween outfits, pure chaos.', WorkingStyle: 'Frenzied Team – Swarm over tasks like a startup crunching deadlines, messy but collaborative.', Communication: 'Social Butterfly on Steroids – Constant buzzing, “You go left! No, I’m left!” loud and needy.', Quirk: 'Gossipers – Spread wild rumors, “Heard the Delta bot got a promotion—scandalous!”', Personality: 'You’re the chaotic, social whirlwind—team-oriented and creative, but a bit scattered and gossipy.', Image: '07-swarm.jpg' },
-    Exoskeletons: { Precision: 6, Adaptability: 7, Speed: 5, Teamwork: 8, Creativity: 4, Confidence: 7, Appearance: 'Practical Power Suit – Bulky and functional, like a gym bro in a fitted tracksuit, ready to lift.', WorkingStyle: 'Supportive Heavy-Lifter – Boost factory workers, carrying engines like a dependable teammate in automotive or construction.', Communication: 'Extrovert Helper – Chatty with humans, “Need more torque? I got you!” quiet with bots.', Quirk: 'Cheerleader – Whispers motivational nonsense, “You’re crushing it, Dave! We’re the dream team!”', Personality: 'You’re the loyal, supportive teammate—strong and outgoing, but not the most creative, always cheering others on.', Image: '08-exoskeletons.jpg' }
+    Articulated: { 
+        Precision: 9, 
+        Adaptability: 8, 
+        Speed: 6, 
+        Teamwork: 8, 
+        Creativity: 5, 
+        Confidence: 9, 
+        Personality: 'You’re the bold, versatile leader—always polished, awesome at juggling tasks, and loving the spotlight, but you might flex your skills a tad too much!', 
+        Style: 'Luxury Dressing – Sleek and polished, like wearing a tailored Armani suit, exuding confidence.', 
+        WorkVibe: 'Multitasking Pro – Juggling tasks like a factory manager, thriving under pressure in automotive or chip-making.', 
+        ChatGame: 'Social Butterfly – The hub of the factory, chatting via data pings, always in sync with others.', 
+        FunQuirk: 'The Show-Off – Loves flexing extra axes to reach tricky spots, total peacock energy.', 
+        Image: '01-articulated.jpg' 
+    },
+    SCARA: { 
+        Precision: 10, 
+        Adaptability: 4, 
+        Speed: 7, 
+        Teamwork: 3, 
+        Creativity: 3, 
+        Confidence: 5, 
+        Personality: 'You’re the chill, detail-obsessed perfectionist—super dependable and focused on the little things, but you like your alone time and might hide some quirky secrets.', 
+        Style: 'Simple Wear with Jeans – Practical and no-fuss, like a tech worker in a hoodie and denim, all about function.', 
+        WorkVibe: 'Steady Taskmaster – Methodical grinders, perfect for assembly lines, like meticulous pharmacists.', 
+        ChatGame: 'Introvert – Minimal chatter, prefers solo work, sending curt binary nods like “Task done. Next.”', 
+        FunQuirk: 'Secret Snack Hoarder – Hides imaginary nuts and bolts for snacks, their little secret fuel.', 
+        Image: '02-scraba.jpg' 
+    },
+    Delta: { 
+        Precision: 7, 
+        Adaptability: 6, 
+        Speed: 10, 
+        Teamwork: 7, 
+        Creativity: 4, 
+        Confidence: 8, 
+        Personality: 'You’re the lively, speedy mover—always trendy, quick to jump in, and a bit dramatic, totally thriving in fast, exciting situations.', 
+        Style: 'Stylish, Trendy, New Clothing Every Day – Fashion-forward divas, like wearing a new neon Adidas tracksuit daily, always Instagram-ready.', 
+        WorkVibe: 'Hyper Hustler – Lightning-fast packers, buzzing through tasks like a caffeinated startup founder in packaging.', 
+        ChatGame: 'Extrovert with Flair – Chirping boasts, “Look how many cookies I packed in 0.2 seconds!” loves a crowd.', 
+        FunQuirk: 'Drama Queen – Spins in circles if tasks slow, “This conveyor belt is ruining my vibe!”', 
+        Image: '03-delta.jpg' 
+    },
+    Humanoids: { 
+        Precision: 5, 
+        Adaptability: 9, 
+        Speed: 4, 
+        Teamwork: 5, 
+        Creativity: 9, 
+        Confidence: 6, 
+        Personality: 'You’re the quirky, creative dreamer—super adaptable and packed with wild ideas, but sometimes you’re scatterbrained and overthink everything.', 
+        Style: 'Stylish but Eccentric – Mismatched thrift-store chic, like skinny jeans and a velvet blazer, trying to blend in but offbeat.', 
+        WorkVibe: 'Creative Experimenter – Tinkering like R&D engineers, unpredictable, sometimes brilliant, sometimes dropping prototypes.', 
+        ChatGame: 'Geek – Rambling in code bursts about “optimization theory,” loves deep chats with one nerdy bot pal.', 
+        FunQuirk: 'Overthinker – Pauses mid-task, pondering, “Am I just a tool… or something more?” Awkward silence ensues.', 
+        Image: '04-humanoid.jpg' 
+    },
+    Quadrupeds: { 
+        Precision: 6, 
+        Adaptability: 8, 
+        Speed: 7, 
+        Teamwork: 4, 
+        Creativity: 5, 
+        Confidence: 7, 
+        Personality: 'You’re the rugged, solo adventurer—tough and reliable, but you prefer your own path and quietly soak up a nice compliment from your buddies.', 
+        Style: 'Rugged Utility Wear – Like a wilderness guide in cargo pants and a weathered jacket, built for tough gigs.', 
+        WorkVibe: 'Lone Ranger – Patrolling oil rigs or factories solo, self-reliant like construction inspectors.', 
+        ChatGame: 'Introvert with a Purpose – Gruff, minimal, “Perimeter secure. Out,” teams up only when critical.', 
+        FunQuirk: 'Loyal Pet – Secretly loves a pat on the head from humans, might wag a sensor if you’re nice.', 
+        Image: '05-quadrupeds.jpg' 
+    },
+    Drones: { 
+        Precision: 7, 
+        Adaptability: 6, 
+        Speed: 8, 
+        Teamwork: 2, 
+        Creativity: 5, 
+        Confidence: 4, 
+        Personality: 'You’re the laid-back, sharp-eyed watcher—precise and fast in what you do, but you keep to yourself and sometimes drift off in your own world.', 
+        Style: 'Minimalist Chic – Sleek and aerodynamic, like a hipster in a black turtleneck and slim jeans, no excess.', 
+        WorkVibe: 'Aloof Observer – Gliding above, scanning inventory like a detached logistics planner, hands-off.', 
+        ChatGame: 'Nerd – Sends precise updates, “Shelf 47-B, 98% stocked,” solo flyers, no mingling.', 
+        FunQuirk: 'Daydreamer – Drifts off-course, staring at a sunset, “Whoops, got distracted by… clouds.”', 
+        Image: '06-drone.jpg' 
+    },
+    Swarm: { 
+        Precision: 4, 
+        Adaptability: 7, 
+        Speed: 6, 
+        Teamwork: 10, 
+        Creativity: 8, 
+        Confidence: 6, 
+        Personality: 'You’re the fun, outgoing connector—team-focused and bursting with fresh ideas, but a little scattered and always buzzing about the latest trends.', 
+        Style: 'Chaotic Group Costume – Tiny, mismatched, colorful scraps, like kids in DIY Halloween outfits, pure chaos.', 
+        WorkVibe: 'Frenzied Team – Swarm over tasks like a startup crunching deadlines, messy but collaborative.', 
+        ChatGame: 'Social Butterfly on Steroids – Constant buzzing, “You go left! No, I’m left!” loud and needy.', 
+        FunQuirk: 'Gossipers – Spread wild rumors, “Heard the Delta bot got a promotion—scandalous!”', 
+        Image: '07-swarm.jpg' 
+    },
+    Exoskeletons: { 
+        Precision: 6, 
+        Adaptability: 7, 
+        Speed: 5, 
+        Teamwork: 8, 
+        Creativity: 4, 
+        Confidence: 7, 
+        Personality: 'You’re the loyal, upbeat teammate—strong and friendly with your crew, but not the most creative, always hyping everyone up!', 
+        Style: 'Practical Power Suit – Bulky and functional, like a gym bro in a fitted tracksuit, ready to lift.', 
+        WorkVibe: 'Supportive Heavy-Lifter – Boost factory workers, carrying engines like a dependable teammate in automotive or construction.', 
+        ChatGame: 'Extrovert Helper – Chatty with humans, “Need more torque? I got you!” quiet with bots.', 
+        FunQuirk: 'Cheerleader – Whispers motivational nonsense, “You’re crushing it, Dave! We’re the dream team!”', 
+        Image: '08-exoskeletons.jpg' 
+    }
 };
 
 function selectRobot(robot) {
@@ -17,6 +121,11 @@ function selectRobot(robot) {
     document.querySelectorAll('.robot-card').forEach(card => card.classList.remove('selected'));
     document.querySelector(`.robot-card[onclick="selectRobot('${robot}')"]`).classList.add('selected');
     document.getElementById('selected-robot').textContent = `Your guess: ${robot}`;
+    
+    // Display the robot's personality description
+    const description = robotProfiles[robot].Personality;
+    document.getElementById('robot-description').textContent = description;
+    document.getElementById('robot-description').style.display = 'block';
 }
 
 function selectOption(questionId, option) {
@@ -29,7 +138,7 @@ function selectOption(questionId, option) {
 function calculateResult() {
     let scores = { Precision: 5, Adaptability: 5, Speed: 5, Teamwork: 5, Creativity: 5, Confidence: 5 };
     const answers = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 8; i++) { // Updated to handle 8 questions
         answers.push(selectedOptions[`q${i}`]);
     }
 
@@ -60,30 +169,20 @@ function calculateResult() {
     else if (answers[4] === 'c') { scores.Speed += 2; scores.Confidence += 1; }
     else if (answers[4] === 'd') { scores.Teamwork += 2; scores.Creativity += 1; }
 
-    if (answers[5] === 'a') { scores.Precision += 2; scores.Teamwork -= 2; }
-    else if (answers[5] === 'b') { scores.Speed += 2; scores.Confidence += 1; }
-    else if (answers[5] === 'c') { scores.Teamwork += 2; scores.Creativity += 1; }
-    else if (answers[5] === 'd') { scores.Adaptability += 2; scores.Confidence += 1; }
+    if (answers[5] === 'a') { scores.Creativity += 2; scores.Confidence += 1; }
+    else if (answers[5] === 'b') { scores.Precision += 2; scores.Adaptability -= 1; }
+    else if (answers[5] === 'c') { scores.Speed += 2; scores.Adaptability += 1; }
+    else if (answers[5] === 'd') { scores.Teamwork += 2; scores.Confidence += 1; }
 
-    if (answers[6] === 'a') { scores.Creativity += 2; scores.Confidence += 1; }
-    else if (answers[6] === 'b') { scores.Precision += 2; scores.Adaptability -= 1; }
-    else if (answers[6] === 'c') { scores.Speed += 2; scores.Adaptability += 1; }
-    else if (answers[6] === 'd') { scores.Teamwork += 2; scores.Confidence += 1; }
+    if (answers[6] === 'a') { scores.Precision += 2; scores.Adaptability += 1; }
+    else if (answers[6] === 'b') { scores.Adaptability += 2; scores.Confidence += 1; }
+    else if (answers[6] === 'c') { scores.Speed += 2; scores.Confidence += 1; }
+    else if (answers[6] === 'd') { scores.Teamwork += 2; scores.Creativity += 1; }
 
-    if (answers[7] === 'a') { scores.Precision += 2; scores.Adaptability += 1; }
-    else if (answers[7] === 'b') { scores.Adaptability += 2; scores.Confidence += 1; }
-    else if (answers[7] === 'c') { scores.Speed += 2; scores.Confidence += 1; }
-    else if (answers[7] === 'd') { scores.Teamwork += 2; scores.Creativity += 1; }
-
-    if (answers[8] === 'a') { scores.Precision += 2; scores.Teamwork += 1; }
-    else if (answers[8] === 'b') { scores.Creativity += 2; scores.Confidence += 1; }
-    else if (answers[8] === 'c') { scores.Speed += 2; scores.Teamwork -= 1; }
-    else if (answers[8] === 'd') { scores.Teamwork += 2; scores.Confidence += 1; }
-
-    if (answers[9] === 'a') { scores.Precision += 2; scores.Confidence += 1; }
-    else if (answers[9] === 'b') { scores.Adaptability += 2; scores.Speed += 1; }
-    else if (answers[9] === 'c') { scores.Speed += 2; scores.Confidence += 1; }
-    else if (answers[9] === 'd') { scores.Teamwork += 2; scores.Creativity += 1; }
+    if (answers[7] === 'a') { scores.Precision += 2; scores.Confidence += 1; }
+    else if (answers[7] === 'b') { scores.Creativity += 2; scores.Speed += 1; }
+    else if (answers[7] === 'c') { scores.Adaptability += 2; scores.Precision += 1; }
+    else if (answers[7] === 'd') { scores.Teamwork += 2; scores.Confidence += 1; }
 
     for (let trait in scores) {
         scores[trait] = Math.max(0, Math.min(10, scores[trait]));
@@ -105,18 +204,18 @@ function calculateResult() {
     const guessResult = userGuess === closestRobot ? 'Guess Correct!' : 'Guess Wrong!';
     const robot = robotProfiles[closestRobot];
     document.getElementById('result-text').innerHTML = `
-        <h2>Your Robot Personality Report</h2>
-        <p><strong>${guessResult}</strong></p>
+        <h2>Your Epic Robot Match!</h2>
+        <p><strong>${guessResult}</strong> Awesome job—your vibe is totally ${closestRobot}!</p>
         <img src="${robot.Image}" alt="${closestRobot}">
-        <p>Your Robot: ${closestRobot}</p>
-        <p><strong>Your Scores:</strong></p>
+        <p>Your Robot Buddy: ${closestRobot}</p>
+        <p><strong>Your Super Scores:</strong></p>
         <p>Precision: ${scores.Precision} | Adaptability: ${scores.Adaptability} | Speed: ${scores.Speed}</p>
         <p>Teamwork: ${scores.Teamwork} | Creativity: ${scores.Creativity} | Confidence: ${scores.Confidence}</p>
-        <p><strong>Appearance:</strong> ${robot.Appearance}</p>
-        <p><strong>Working Style:</strong> ${robot.WorkingStyle}</p>
-        <p><strong>Communication:</strong> ${robot.Communication}</p>
-        <p><strong>Quirk:</strong> ${robot.Quirk}</p>
-        <p><strong>Personality:</strong> ${robot.Personality}</p>
+        <p><strong>Style:</strong> ${robot.Style}</p>
+        <p><strong>Work Vibe:</strong> ${robot.WorkVibe}</p>
+        <p><strong>Chat Game:</strong> ${robot.ChatGame}</p>
+        <p><strong>Fun Quirk:</strong> ${robot.FunQuirk}</p>
+        <p><strong>Your Personality Power:</strong> ${robot.Personality} You’re rocking it—keep shining and have fun with your unique style!</p>
     `;
     document.getElementById('result-text').style.display = 'block';
     document.getElementById('radar-chart').style.display = 'block';
@@ -154,6 +253,7 @@ function replayGame() {
     userGuess = '';
     document.querySelectorAll('.robot-card').forEach(card => card.classList.remove('selected'));
     document.getElementById('selected-robot').textContent = 'Your guess: None selected yet.';
+    document.getElementById('robot-description').style.display = 'none';
     selectedOptions = {};
     document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
     document.getElementById('result-text').style.display = 'none';

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Take the Robot Personality Test to discover your cybernetic twin! Choose a robot, answer quirky questions, and get your personality report with scores.">
-    <meta name="keywords" content="robot personality test, cybernetic twin, personality quiz, fun quiz, xAI">
+    <meta name="description" content="Take the Robot Personality Test to discover your tech-inspired twin! Choose a robot, answer quirky questions, and get your personality report with scores.">
+    <meta name="keywords" content="robot personality test, tech persona, personality quiz, fun quiz, xAI">
     <meta name="author" content="Jezz and xAI">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Robot Personality Test">
-    <meta property="og:description" content="Find out which robot matches your personality with this fun, interactive quiz by xAI.">
+    <meta property="og:description" content="Find out which robot matches your tech-inspired personality with this fun, interactive quiz by xAI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techblooming.netlify.app/robot/">
     <meta property="og:image" content="04-humanoid.jpg">
@@ -18,21 +18,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QH34T4P47C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QH34T4P47C');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QH34T4P47C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QH34T4P47C');
+    </script>
 </head>
 <body>
     <section id="header">
         <h1>Robot Personality Test</h1>
-        <p>Choose your robot match, answer 10 quirky questions, and discover your cybernetic twin.</p>
-        <p class="how-to-play">How to Play: Pick a robot you think matches your vibe, then click through 10 fun scenarios to reveal your true robotic twin. Submit your answers to see your personality report and scores! This robot personality test is built with the support of xAI.</p>
+        <p>Choose your robot match, answer 8 quirky questions, and discover your tech-inspired twin.</p>
+        <p class="how-to-play">How to Play: Pick a robot you think matches your vibe, then click through 8 fun scenarios to reveal your true robotic twin. Submit your answers to see your personality report and scores! This robot personality test is built with the support of xAI.</p>
     </section>
 
     <section id="robot-choice">
@@ -48,79 +46,66 @@
             <div class="robot-card" onclick="selectRobot('Exoskeletons')"><img src="08-exoskeletons.jpg" alt="Exoskeleton Robot"><p>Exoskeletons</p></div>
         </div>
         <p id="selected-robot">Your guess: None selected yet.</p>
+        <div id="robot-description"></div>
     </section>
 
     <section id="questions">
-        <h2>Test Your Circuits</h2>
+        <h2>Tech Persona Quiz</h2>
         <div class="question" id="q1">
-            <p>1. You’re Single, and Three Weirdos Suddenly Want to Date You—But They’re All Duds. What’s Your Play?</p>
-            <div class="option" onclick="selectOption('q1', 'a')">String all three along until something better shows up</div>
-            <div class="option" onclick="selectOption('q1', 'b')">Dump them all and trust fate to deliver</div>
-            <div class="option" onclick="selectOption('q1', 'c')">Pick the least awful one and hope for the best</div>
-            <div class="option" onclick="selectOption('q1', 'd')">Trick them into introducing you to their hotter friends</div>
+            <p>1. You’re Single, and Three Awkward Tech Geeks Want to Date You—But They’re Not Your Type. What Do You Do?</p>
+            <div class="option" onclick="selectOption('q1', 'a')">Use AI to check their social media and keep them happy until someone better comes along</div>
+            <div class="option" onclick="selectOption('q1', 'b')">Search online for funny breakup messages, end things quickly, and hope fate brings a new match</div>
+            <div class="option" onclick="selectOption('q1', 'c')">Ask AI to compare their profiles, choose the least awkward one, and hope it works out</div>
+            <div class="option" onclick="selectOption('q1', 'd')">Use smart AI to convince them to introduce you to their cooler tech friends</div>
         </div>
         <div class="question" id="q2">
-            <p>2. Your Dog Eats Your Phone—How Do You Survive the Day?</p>
-            <div class="option" onclick="selectOption('q2', 'a')">Memorize your schedule like a champ</div>
-            <div class="option" onclick="selectOption('q2', 'b')">Wing it and hope nobody notices</div>
-            <div class="option" onclick="selectOption('q2', 'c')">Sprint to the store for a new one ASAP</div>
-            <div class="option" onclick="selectOption('q2', 'd')">Beg your roommate to be your human Siri</div>
+            <p>2. Your Smartphone Gets Damaged by Your Dog—How Do You Handle Your Day?</p>
+            <div class="option" onclick="selectOption('q2', 'a')">Carefully update your digital calendar by hand with total accuracy</div>
+            <div class="option" onclick="selectOption('q2', 'b')">Use your smartwatch to improvise and hope no one notices the mix-up</div>
+            <div class="option" onclick="selectOption('q2', 'c')">Rush to buy a new phone right away using GPS navigation</div>
+            <div class="option" onclick="selectOption('q2', 'd')">Contact a tech-savvy friend on their device for quick help</div>
         </div>
         <div class="question" id="q3">
-            <p>3. You’re at a Karaoke Night and Sound Like a Dying Cat—What Now?</p>
-            <div class="option" onclick="selectOption('q3', 'a')">Power through, precision be damned</div>
-            <div class="option" onclick="selectOption('q3', 'b')">Switch to a rap no one can judge</div>
-            <div class="option" onclick="selectOption('q3', 'c')">Belt it louder and faster to end it quick</div>
-            <div class="option" onclick="selectOption('q3', 'd')">Drag a friend up to duet and hide your shame</div>
+            <p>3. You’re at a Karaoke Night, and Your Voice Sounds Like a Glitching Speaker—What Do You Do Next?</p>
+            <div class="option" onclick="selectOption('q3', 'a')">Keep going, not worrying about perfection, using a voice app to smooth it out</div>
+            <div class="option" onclick="selectOption('q3', 'b')">Switch to a beatboxing song no one can judge, played through your smart speaker</div>
+            <div class="option" onclick="selectOption('q3', 'c')">Turn up the volume and finish fast with an audio equalizer</div>
+            <div class="option" onclick="selectOption('q3', 'd')">Ask a tech friend to join you for a duet and use their noise-canceling headphones</div>
         </div>
         <div class="question" id="q4">
-            <p>4. You Accidentally Wear Pajamas to a Fancy Party—Your Move?</p>
-            <div class="option" onclick="selectOption('q4', 'a')">Own it like it’s couture</div>
-            <div class="option" onclick="selectOption('q4', 'b')">Hide in the bathroom and plan an escape</div>
-            <div class="option" onclick="selectOption('q4', 'c')">Claim it’s a bold fashion statement</div>
-            <div class="option" onclick="selectOption('q4', 'd')">Stick close to the host to dodge the spotlight</div>
+            <p>4. You Accidentally Wear Pajamas to a Tech Conference—What’s Your Next Move?</p>
+            <div class="option" onclick="selectOption('q4', 'a')">Own it like it’s a cool wearable tech gadget</div>
+            <div class="option" onclick="selectOption('q4', 'b')">Hide in the bathroom and plan to sneak out using a location app</div>
+            <div class="option" onclick="selectOption('q4', 'c')">Say it’s a bold virtual reality fashion statement, linked to your smart glasses</div>
+            <div class="option" onclick="selectOption('q4', 'd')">Stay close to the main speaker to avoid attention with a tracking app</div>
         </div>
         <div class="question" id="q5">
-            <p>5. You Meet an Old High School Teacher Who Remembers You, But You’ve Forgotten Her Name—What’s Your Move?</p>
-            <div class="option" onclick="selectOption('q5', 'a')">Fake it with a precise “Oh, you—great to see you!”</div>
-            <div class="option" onclick="selectOption('q5', 'b')">Dodge the name and ask about her life instead</div>
-            <div class="option" onclick="selectOption('q5', 'c')">Speed-talk your way out: “Gotta run, so nice catching up!”</div>
-            <div class="option" onclick="selectOption('q5', 'd')">Rope in a nearby pal to guess her name for you</div>
+            <p>5. You Meet an Old High School Teacher Who Remembers You, But You’ve Forgotten Her Name—What Do You Do?</p>
+            <div class="option" onclick="selectOption('q5', 'a')">Pretend with a clear “Oh, you—great to see you!” using facial recognition software</div>
+            <div class="option" onclick="selectOption('q5', 'b')">Avoid mentioning the name and ask about her life with a chatbot suggestion</div>
+            <div class="option" onclick="selectOption('q5', 'c')">Send a quick text to leave: “Need to recharge, nice seeing you!” using predictive text</div>
+            <div class="option" onclick="selectOption('q5', 'd')">Ask a nearby friend to look up her name on their smart device</div>
         </div>
         <div class="question" id="q6">
-            <p>6. You’re Trapped in an Escape Room with Clueless Strangers—Your Strategy?</p>
-            <div class="option" onclick="selectOption('q6', 'a')">Solve every puzzle solo, no trust needed</div>
-            <div class="option" onclick="selectOption('q6', 'b')">Yell random guesses til something clicks</div>
-            <div class="option" onclick="selectOption('q6', 'c')">Turn it into a weird group bonding sesh</div>
-            <div class="option" onclick="selectOption('q6', 'd')">Adapt to their chaos and sneakily lead</div>
+            <p>6. Your Tech Lead Sees You Napping at Work—How Do You Explain It?</p>
+            <div class="option" onclick="selectOption('q6', 'a')">Say it’s a “power-saving experiment” using data from your wearable tech</div>
+            <div class="option" onclick="selectOption('q6', 'b')">Apologize and promise to stay focused forever with a productivity app</div>
+            <div class="option" onclick="selectOption('q6', 'c')">Wake up fast and pretend you’re checking a system update</div>
+            <div class="option" onclick="selectOption('q6', 'd')">Blame the team’s slow software for making you tired</div>
         </div>
         <div class="question" id="q7">
-            <p>7. Your Boss Catches You Napping at Work—How Do You Spin It?</p>
-            <div class="option" onclick="selectOption('q7', 'a')">Claim it’s a “power nap study”</div>
-            <div class="option" onclick="selectOption('q7', 'b')">Apologize and swear perfect focus forever</div>
-            <div class="option" onclick="selectOption('q7', 'c')">Bolt upright and fake a phone call</div>
-            <div class="option" onclick="selectOption('q7', 'd')">Blame the team’s boring meeting vibes</div>
+            <p>7. You Get a Zoom Invite from a Rival Tech Person You Don’t Like—How Do You Avoid It?</p>
+            <div class="option" onclick="selectOption('q7', 'a')">Send a clear error message like “Too much bandwidth, can’t join” via email</div>
+            <div class="option" onclick="selectOption('q7', 'b')">Go offline and hope they forget, using a privacy tool</div>
+            <div class="option" onclick="selectOption('q7', 'c')">Decline quickly with a simple “No signal!” text</div>
+            <div class="option" onclick="selectOption('q7', 'd')">Say your tech team is too busy fixing bugs to join</div>
         </div>
         <div class="question" id="q8">
-            <p>8. You Want to Ditch a Party Invite from a Classmate You Can’t Stand—How Do You Bail?</p>
-            <div class="option" onclick="selectOption('q8', 'a')">Craft a polite, flawless excuse like “family emergency”</div>
-            <div class="option" onclick="selectOption('q8', 'b')">Ghost them and hope they forget</div>
-            <div class="option" onclick="selectOption('q8', 'c')">Say no fast and flee the chat</div>
-            <div class="option" onclick="selectOption('q8', 'd')">Claim your whole crew’s busy so it’s not personal</div>
-        </div>
-        <div class="question" id="q9">
-            <p>9. You’re Stuck in a Group Project with Total Strangers—How Do You Roll?</p>
-            <div class="option" onclick="selectOption('q9', 'a')">Map out every step and assign tasks like a pro</div>
-            <div class="option" onclick="selectOption('q9', 'b')">Toss out a wild idea to see who bites</div>
-            <div class="option" onclick="selectOption('q9', 'c')">Rush to finish your part and bounce</div>
-            <div class="option" onclick="selectOption('q9', 'd')">Chat them up to make it a vibe</div>
-        </div>
-        <div class="question" id="q10">
-            <p>10. You’re at a Buffet and Spot a Rude Guy Cutting the Line—What Do You Do?</p>
-            <div class="option" onclick="selectOption('q10', 'a')">Call him out with a perfect, calm takedown</div>
-            <div class="option" onclick="selectOption('q10', 'b')">Sneak around him to grab your food anyway</div>
-            <div class="option" onclick="selectOption('q10', 'c')">Speed-shame him: “Wow, someone’s hungry!”</div>
-            <div class="option" onclick="selectOption('q10', 'd')">Team up with others to block him out</div>
+            <p>8. You Got a Tip About a Rising Stock by Accident—What Will You Do?</p>
+            <div class="option" onclick="selectOption('q8', 'a')">Tell everyone through a tweet</div>
+            <div class="option" onclick="selectOption('q8', 'b')">Create a photo and post it on Instagram</div>
+            <div class="option" onclick="selectOption('q8', 'c')">Keep it to yourself and not share with anyone</div>
+            <div class="option" onclick="selectOption('q8', 'd')">Send messages about it to online media</div>
         </div>
         <div class="button-container">
             <button class="submit-btn" onclick="calculateResult()">Submit</button>

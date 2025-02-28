@@ -90,7 +90,25 @@ body {
     font-size: 1.2rem;
     color: #D0D0D0;
     font-weight: 400;
+    text-shadow: 0 0 5px #FF00FF;
 }
+
+#robot-description {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    border: 1px solid #00FFFF;
+    box-shadow: 0 0 15px #00FFFF, 0 0 25px #FF00FF;
+    text-shadow: 0 0 5px #00FFFF;
+    line-height: 1.6;
+    display: none; /* Hidden by default, shown via JS */
+}
+
 #questions {
     padding: 60px 20px;
     background: #1A1A1A;
