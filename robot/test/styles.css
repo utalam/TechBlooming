@@ -1,0 +1,307 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Proxima Nova', 'Arial', sans-serif;
+    background: #000000;
+    color: #FFFFFF;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+#header {
+    padding: 70px 20px;
+    text-align: center;
+    border-bottom: 1px solid #00FFFF;
+}
+#header h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-shadow: 0 0 8px #FF00FF;
+}
+#header p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 20px auto;
+    color: #D0D0D0;
+}
+#header .how-to-play {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 15px auto;
+    color: #E0E0FF;
+    text-shadow: 0 0 5px #00FFFF;
+}
+#robot-choice {
+    padding: 60px 20px;
+    background: #000000;
+    text-align: center;
+}
+#robot-choice h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-shadow: 0 0 8px #FF00FF;
+}
+.robot-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.robot-card {
+    position: relative;
+    width: 20vw;
+    max-width: 160px;
+    height: auto;
+    aspect-ratio: 1 / 1.1875; /* Maintains 160:190 ratio */
+    transition: all 0.3s ease;
+}
+.robot-card img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: brightness(85%);
+    border: 2px solid #FF00FF;
+    box-shadow: 0 0 5px #FF00FF;
+}
+.robot-card.selected img {
+    border: 2px solid #00FFFF;
+    box-shadow: 0 0 15px #00FFFF, 0 0 25px #FF00FF;
+    filter: brightness(100%);
+}
+.robot-card p {
+    font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 8px;
+    font-weight: 500;
+    text-shadow: 0 0 5px #FF00FF;
+}
+.robot-card.selected p {
+    color: #00FFFF;
+    text-shadow: 0 0 10px #00FFFF;
+}
+#selected-robot {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    color: #D0D0D0;
+    font-weight: 400;
+}
+#questions {
+    padding: 60px 20px;
+    background: #1A1A1A;
+    border-top: 1px solid #FF00FF;
+}
+#questions h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 8px #00FFFF;
+}
+.question {
+    background: #282828;
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 900px;
+    border-radius: 12px;
+    border: 1px solid #00FFFF;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+.question p {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    text-shadow: 0 0 5px #FF00FF;
+}
+.option {
+    font-size: 1.1rem;
+    color: #D0D0D0;
+    font-weight: 400;
+    margin: 12px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+    border: 2px solid #00FFFF;
+    box-shadow: 0 0 8px #00FFFF;
+}
+.option:hover {
+    color: #FFFFFF;
+    background: rgba(255, 0, 255, 0.1);
+    box-shadow: 0 0 12px #00FFFF;
+}
+.option.selected {
+    color: #FFFFFF;
+    border: 2px solid #FF00FF;
+    background: rgba(255, 0, 255, 0.2);
+    box-shadow: 0 0 12px #FF00FF;
+    text-shadow: 0 0 5px #FF00FF;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 0;
+}
+.submit-btn, .replay-btn {
+    padding: 15px 40px;
+    background: #FF00FF;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 0 10px #FF00FF;
+}
+.replay-btn {
+    background: #00FFFF;
+    color: #000000;
+    box-shadow: 0 0 10px #00FFFF;
+}
+.submit-btn:hover {
+    background: #00FFFF;
+    color: #000000;
+    box-shadow: 0 0 20px #00FFFF;
+}
+.replay-btn:hover {
+    background: #FF00FF;
+    color: #FFFFFF;
+    box-shadow: 0 0 20px #FF00FF;
+}
+#result-text {
+    max-width: 600px;
+    margin: 40px auto;
+    font-size: 1.3rem;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0 0 5px #00FFFF;
+    display: none;
+    line-height: 1.8;
+    padding: 20px;
+    background: #282828;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+#result-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px #FF00FF;
+}
+#result-text img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    margin: 15px auto;
+    display: block;
+    border: 2px solid #00FFFF;
+}
+#result-text p {
+    margin: 10px 0;
+}
+#radar-chart {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #282828;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #FF00FF;
+    display: none;
+}
+#contact {
+    padding: 60px 20px;
+    background: #000000;
+    text-align: center;
+    border-top: 1px solid #00FFFF;
+}
+#contact h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-shadow: 0 0 8px #FF00FF;
+}
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    background: #282828;
+    border: 1px solid #00FFFF;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    font-family: 'Proxima Nova', 'Arial', sans-serif;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+#contact-form button {
+    margin-top: 20px;
+}
+@media (max-width: 768px) {
+    #header h1 { font-size: 2.2rem; }
+    #header p { font-size: 1.1rem; }
+    #header .how-to-play { font-size: 1rem; }
+    #robot-choice h2, #questions h2, #contact h2 { font-size: 1.8rem; }
+    .robot-grid { gap: 20px; }
+    .robot-card { width: 40vw; max-width: 130px; }
+    .question p { font-size: 1.2rem; }
+    .option { font-size: 1rem; }
+    #result-text { font-size: 1.2rem; }
+    #result-text h2 { font-size: 1.8rem; }
+    #radar-chart { max-width: 400px; }
+    .button-container { flex-direction: column; gap: 15px; }
+}
+@media (max-width: 480px) {
+    #header { padding: 50px 15px; }
+    #header h1 { font-size: 1.8rem; }
+    #header p { font-size: 1rem; }
+    #header .how-to-play { font-size: 0.9rem; }
+    #robot-choice, #questions, #contact { padding: 50px 15px; }
+    .robot-grid { gap: 15px; }
+    .robot-card { width: 45vw; max-width: 110px; }
+    .question { padding: 20px; }
+}
+
+/* [Existing styles unchanged until .replay-btn:hover] */
+.replay-btn:hover {
+    background: #FF00FF;
+    color: #FFFFFF;
+    box-shadow: 0 0 20px #FF00FF;
+}
+
+.share-btn {
+    padding: 15px 40px;
+    background: #FF00FF;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 0 10px #FF00FF;
+}
+
+.share-btn:hover {
+    background: #00FFFF;
+    color: #000000;
+    box-shadow: 0 0 20px #00FFFF;
+}
+
+/* [Remaining styles unchanged] */
