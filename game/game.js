@@ -4,7 +4,7 @@ const wordDisplay = document.getElementById("wordDisplay");
 
 // Responsive canvas size
 canvas.width = Math.min(800, window.innerWidth * 0.9);
-canvas.height = Math.min(600, window.innerHeight * 0.8);
+canvas.height = Math.min(600, window.innerHeight * 0.7);
 
 // Player (plane) properties
 const player = {
@@ -12,7 +12,7 @@ const player = {
     y: canvas.height - 50,
     width: 50,
     height: 30,
-    speed: 5,
+    speed: 8, // Increased for better responsiveness
     dx: 0
 };
 
@@ -21,7 +21,7 @@ const bullets = [];
 const bulletSpeed = 7;
 
 // Word list and rows
-const wordList = ["business", "profit", "investment", "vision"];
+const wordList = ["tree", "apple", "orange", "grass"];
 const rows = [];
 let currentWordIndex = 0;
 let currentWord = wordList[currentWordIndex];
@@ -61,7 +61,7 @@ function drawBullets() {
 
 // Draw letter blocks
 function drawBlocks() {
-    ctx.font = `${canvas.width / 25}px Arial`; // Responsive font size
+    ctx.font = `${canvas.width / 25}px Arial`;
     rows.forEach(row => {
         row.blocks.forEach(block => {
             if (block.alive) {
@@ -79,6 +79,8 @@ function movePlayer() {
     player.x += player.dx;
     if (player.x < 0) player.x = 0;
     if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+    // Dampen movement for smoother stop
+    player.dx *= 0.9;
 }
 
 // Move bullets
@@ -187,14 +189,13 @@ canvas.addEventListener("touchmove", (e) => {
     if (touchStartX !== null) {
         const touchX = e.touches[0].clientX;
         const deltaX = touchX - touchStartX;
-        player.dx = deltaX / 10; // Smooth movement
+        player.dx = deltaX * 0.5; // Adjusted sensitivity for smoother control
         touchStartX = touchX;
     }
 });
 
 canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
-    player.dx = 0;
     touchStartX = null;
 });
 
