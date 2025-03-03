@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#gameCanvas {
+    border: 1px solid #fff;
+    max-width: 100vw;
+    max-height: 80vh;
+    touch-action: none; /* Prevents default touch behaviors */
+}
+
+#targetWord {
+    color: white;
+    font-size: clamp(16px, 5vw, 24px); /* Responsive font size */
+    margin-top: 2vh;
+    text-align: center;
+}
