@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Fun Game</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun, kid-friendly font */
+            text-align: center;
+            padding: 20px;
+            background-color: #4B0082; /* Deep purple background like the image */
+            margin: 0;
+        }
+        header {
+            background-color: #FF69B4; /* Hot pink header */
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: white;
+            font-size: 28px;
+            margin: 0;
+        }
+        #how-to-play {
+            color: #ffffff; /* White text for "How to Play" to match the purple background */
+            font-size: 18px;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        #game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 20px auto;
+            gap: 10px;
+        }
+        .card {
+            width: 80px; /* Larger cards */
+            height: 100px; /* Larger cards */
+            border: 4px solid #FF4500; /* Orange border for fun */
+            border-radius: 15px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px; /* Bigger alphabet letters */
+            font-weight: 900; /* Extra bold */
+            cursor: move;
+            user-select: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            transition: transform 0.2s; /* Smooth hover effect */
+        }
+        .card:hover {
+            transform: scale(1.1); /* Slightly bigger on hover */
+        }
+        #buttons {
+            margin: 20px 0;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #32CD32; /* Lime green buttons */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+        }
+        button:hover {
+            background-color: #00FF7F; /* Brighter green on hover */
+        }
+        button:disabled {
+            background-color: #CCCCCC;
+            cursor: not-allowed;
+        }
+        #timer {
+            font-size: 24px;
+            color: #FF4500; /* Orange text for visibility */
+            margin: 15px;
+            font-weight: bold;
+        }
+        #message {
+            font-size: 22px;
+            color: #FF1493; /* Deep pink for fun */
+            margin-top: 15px;
+        }
+        #score {
+            font-size: 20px;
+            color: #ffd900; /* Gold for score */
+            margin-top: 10px;
+        }
+        #game-description {
+            color: #ffffff; /* White text for description to match the purple background */
+            font-size: 16px;
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+        #social-buttons {
+            margin: 20px 0;
+        }
+        .social-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #32CD32; /* Lime green buttons */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+        }
+        .social-button:hover {
+            background-color: #00FF7F; /* Brighter green on hover */
+        }
+        #like-count {
+            font-size: 16px;
+            color: #ffd900; /* Gold for like count */
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 60px;
+                height: 80px;
+                font-size: 30px; /* Slightly smaller for mobile, but still bigger */
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 18px;
+                margin: 0 5px;
+            }
+            #game-container {
+                max-width: 90%;
+            }
+            #how-to-play {
+                font-size: 16px;
+            }
+            #game-description {
+                font-size: 14px;
+                max-width: 90%;
+            }
+            .social-button {
+                padding: 8px 15px;
+                font-size: 14px;
+                margin: 0 5px;
+            }
+            #like-count {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alphabet Fun Game</h1>
+    </header>
+    <div id="how-to-play">
+        <strong>How to Play:</strong><br>
+        1. Click "Shuffle & Start" to mix up the alphabet cards!<br>
+        2. Drag the colorful letters to put them in the correct order (A to Z).<br>
+        3. You have 2 minutes—hurry up and have fun!<br>
+        4. Click "Submit" to check your score and grade.<br>
+        5. If you need help, click "Answer" to see the right order.<br>
+        6. Play again by clicking "Shuffle & Start"!
+    </div>
+    <div id="buttons">
+        <button id="shuffle-btn" onclick="startGame()">Shuffle & Start</button>
+        <button id="submit-btn" onclick="submitScore()" disabled>Submit</button>
+        <button id="answer-btn" onclick="showAnswer()" disabled>Answer</button>
+    </div>
+    <div id="timer">Time: 120s</div>
+    <div id="game-container"></div>
+    <div id="game-description">
+        This fun game helps train learners to remember the order of the English alphabet (A to Z) in an interesting and colorful way!
+    </div>
+    <div id="social-buttons">
+        <button class="social-button" onclick="likeGame()">Like</button>
+        <button class="social-button" onclick="copyShareLink()">Copy Sharing Link</button>
+        <div id="like-count">Likes: 0</div>
+    </div>
+    <div id="message"></div>
+    <div id="score"></div>
+
+    <script>
+        const container = document.getElementById("game-container");
+        const timerDisplay = document.getElementById("timer");
+        const messageDisplay = document.getElementById("message");
+        const scoreDisplay = document.getElementById("score");
+        const shuffleBtn = document.getElementById("shuffle-btn");
+        const submitBtn = document.getElementById("submit-btn");
+        const answerBtn = document.getElementById("answer-btn");
+        const likeCountDisplay = document.getElementById("like-count");
+        let cards = [];
+        let timeLeft = 120; // 2 minutes
+        let timer;
+        let gameActive = false;
+        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+
+        // Update like count display
+        function updateLikeCount() {
+            likeCountDisplay.textContent = `Likes: ${likeCount}`;
+            localStorage.setItem('likeCount', likeCount);
+        }
+        updateLikeCount();
+
+        // Define vivid and vibrant colors for each card background (matching the image palette: purple, yellow, red, orange, blue)
+        const cardBackgroundColors = [
+            '#FF007F', // Deep Pink
+            '#008000', // Bright Green
+            '#FF0000', // Bright Red
+            '#FFA500', // Bright Orange
+            '#0000FF'  // Bright Blue
+        ];
+
+        // Assign colors cyclically to 26 cards
+        function getCardBackgroundColor(index) {
+            return cardBackgroundColors[index % cardBackgroundColors.length];
+        }
+
+        // Create 26 alphabet cards
+        function initCards() {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            cards = alphabet.split("").map((letter, index) => ({ letter, order: alphabet.indexOf(letter), bgColor: getCardBackgroundColor(index) }));
+            renderCards();
+        }
+
+        // Display cards in the container
+        function renderCards() {
+            container.innerHTML = "";
+            cards.forEach(card => {
+                const div = document.createElement("div");
+                div.className = "card";
+                div.textContent = card.letter;
+                div.style.backgroundColor = card.bgColor; // Apply unique background color to each card
+                div.style.color = '#FFFFFF'; // White text for alphabet letters
+                div.draggable = true;
+                div.addEventListener("dragstart", dragStart);
+                div.addEventListener("dragover", dragOver);
+                div.addEventListener("drop", drop);
+                container.appendChild(div);
+            });
+        }
+
+        // Shuffle array (Fisher-Yates)
+        function shuffleCards() {
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            renderCards();
+        }
+
+        // Drag-and-drop functions
+        let draggedCard = null;
+        function dragStart(e) {
+            draggedCard = e.target;
+            setTimeout(() => draggedCard.style.opacity = "0.5", 0);
+        }
+        function dragOver(e) {
+            e.preventDefault();
+        }
+        function drop(e) {
+            e.preventDefault();
+            const target = e.target;
+            if (target.className === "card" && draggedCard !== target) {
+                const draggedIdx = Array.from(container.children).indexOf(draggedCard);
+                const targetIdx = Array.from(container.children).indexOf(target);
+                [cards[draggedIdx], cards[targetIdx]] = [cards[targetIdx], cards[draggedIdx]];
+                draggedCard.style.opacity = "1";
+                renderCards();
+                checkWin();
+            }
+        }
+
+        // Timer logic
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = 120;
+            timerDisplay.textContent = `Time: ${timeLeft}s`;
+            timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Time: ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame("Time's up! Try again.");
+                }
+            }, 1000);
+        }
+
+        // Start game
+        function startGame() {
+            shuffleCards();
+            startTimer();
+            messageDisplay.textContent = "";
+            scoreDisplay.textContent = "";
+            submitBtn.disabled = false;
+            answerBtn.disabled = false;
+            shuffleBtn.disabled = true;
+            gameActive = true;
+        }
+
+        // Check if cards are in order
+        function checkWin() {
+            const currentOrder = cards.map(card => card.letter).join("");
+            if (currentOrder === "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
+                clearInterval(timer);
+                congratulatePlayer();
+                endGame("Congratulations! Happy playing!");
+            }
+        }
+
+        // Submit score and calculate grade
+        function submitScore() {
+            if (!gameActive) return;
+            clearInterval(timer);
+            const currentOrder = cards.map(card => card.letter).join("");
+            let correctCount = 0;
+            for (let i = 0; i < currentOrder.length; i++) {
+                if (currentOrder[i] === "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]) {
+                    correctCount++;
+                }
+            }
+            const score = Math.round((correctCount / 26) * 100); // Score out of 100
+            let grade = "";
+            if (score >= 90) grade = "Excellent";
+            else if (score >= 70) grade = "Good";
+            else if (score >= 50) grade = "Fair";
+            else if (score >= 30) grade = "Need Improvement";
+            else grade = "Poor";
+
+            scoreDisplay.textContent = `Your Score: ${score}/100 - Grade: ${grade}`;
+            messageDisplay.textContent = score === 100 ? "Congratulations! Happy playing!" : "";
+            submitBtn.disabled = true;
+            answerBtn.disabled = false;
+            shuffleBtn.disabled = false;
+            gameActive = false;
+        }
+
+        // Show correct answer (A-Z order)
+        function showAnswer() {
+            if (!gameActive) {
+                cards.sort((a, b) => a.order - b.order);
+                renderCards();
+                messageDisplay.textContent = "Here is the answer of today's game. Press the 'Shuffle' button and play again!";
+                scoreDisplay.textContent = "";
+                submitBtn.disabled = true;
+                answerBtn.disabled = true;
+                shuffleBtn.disabled = false;
+            }
+        }
+
+        // End game and reset buttons
+        function endGame(message) {
+            messageDisplay.textContent = message;
+            submitBtn.disabled = true;
+            answerBtn.disabled = false;
+            shuffleBtn.disabled = false;
+            gameActive = false;
+        }
+
+        // Congratulate player for perfect score
+        function congratulatePlayer() {
+            scoreDisplay.textContent = `Your Score: 100/100 - Grade: Excellent`;
+        }
+
+        // Like button functionality
+        function likeGame() {
+            likeCount++;
+            updateLikeCount();
+            alert("Thanks for liking the game!");
+        }
+
+        // Copy sharing link functionality
+        function copyShareLink() {
+            const currentUrl = window.location.href;
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                alert("Link copied to clipboard! Share with friends!");
+            }).catch(err => {
+                alert("Failed to copy link. Please try again.");
+                console.error("Error copying link:", err);
+            });
+        }
+
+        // Initialize game on load
+        initCards();
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91a776d1aaa61d76',t:'MTc0MDk4NzQwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
