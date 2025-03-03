@@ -1,0 +1,248 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a2e; /* Deep black with a slight dark purple hint, futuristic */
+  color: #e5e5e5; /* Light gray text for readability on dark background */
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background: linear-gradient(45deg, #e94560, #3b70b1, #ff6b6b); /* Vibrant gradient at the top */
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 2.5rem; /* Larger, bold title */
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Subtle white glow */
+}
+
+.how-to-use {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #ffffff; /* White for contrast on gradient */
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #ffffff; /* White for contrast on gradient */
+}
+
+.card {
+  background: linear-gradient(135deg, #16213e, #1a1a2e); /* Gradient for futuristic cards */
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  border: 1px solid #2d2d44; /* Thin border for card separation */
+}
+
+.card h2 {
+  font-size: 1.8rem; /* Larger, bold headers */
+  color: #e94560; /* Bright red/pink accent for headers, futuristic */
+  margin-bottom: 15px;
+  text-shadow: 0 0 5px rgba(233, 69, 96, 0.5); /* Subtle glow on headers */
+}
+
+label {
+  font-size: 1.2rem; /* Larger text for labels */
+  margin-right: 10px;
+  color: #e5e5e5;
+}
+
+.input-field {
+  font-size: 1.1rem; /* Larger input text */
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #2d2d44;
+  background-color: #2d2d44; /* Dark input background */
+  color: #e5e5e5;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #e94560;
+  box-shadow: 0 0 10px rgba(233, 69, 96, 0.5); /* Glow on focus */
+}
+
+.calculate-btn, .export-btn, .add-stock-btn {
+  font-size: 1.4rem; /* Larger button text */
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-right: 10px;
+  width: 45%; /* Split width for buttons */
+}
+
+.calculate-btn {
+  background: linear-gradient(45deg, #e94560, #ff6b6b); /* Gradient button */
+}
+
+.export-btn {
+  background: linear-gradient(45deg, #0f3460, #16213e); /* Darker gradient for export */
+}
+
+.add-stock-btn {
+  background: linear-gradient(45deg, #4CAF50, #45a049); /* Green gradient for adding stocks */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.calculate-btn:hover {
+  transform: scale(1.05); /* Slight scale on hover for interactivity */
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.7);
+}
+
+.export-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(15, 52, 96, 0.7);
+}
+
+.add-stock-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.7);
+}
+
+.results h2, .results h3 {
+  color: #e94560;
+  text-shadow: 0 0 5px rgba(233, 69, 96, 0.5);
+}
+
+.results p, .result-item {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #e5e5e5;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #2d2d44;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item span:first-child {
+  color: #a2a2a2; /* Lighter gray for labels */
+}
+
+.price-btn {
+  font-size: 1rem; /* Smaller but readable button text */
+  padding: 8px 15px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #0f3460, #e94560); /* Dark gradient for price buttons */
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.price-btn:hover {
+  transform: scale(1.05); /* Slight scale on hover */
+  box-shadow: 0 5px 15px rgba(15, 52, 96, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 2rem; /* Slightly smaller on mobile but still readable */
+  }
+
+  .how-to-use, .description {
+    font-size: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  .input-field {
+    font-size: 1rem;
+    width: 150px;
+  }
+
+  .calculate-btn, .export-btn, .add-stock-btn {
+    font-size: 1.2rem;
+    padding: 12px;
+    width: 48%; /* Adjust for mobile to fit two buttons */
+  }
+
+  .results p, .result-item {
+    font-size: 1rem;
+  }
+
+  .stock-row label, .stock-row input {
+    display: block;
+    width: 100%;
+  }
+
+  .stock-row input {
+    margin-top: 5px;
+  }
+
+  .price-btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    margin-left: 0;
+    margin-top: 5px;
+    width: 100%;
+  }
+}
+
+/* Ensure buttons stack on very small screens */
+@media (max-width: 400px) {
+  .calculate-btn, .export-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .add-stock-btn {
+    width: 100%;
+  }
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: #a2a2a2;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background: #16213e;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}

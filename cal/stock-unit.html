@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Unit Comparison Tool</title>
+  <link rel="stylesheet" href="styles-unit.css">
+  <!-- Include html2canvas for export (optional, add CDN link or local file) -->
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Stock Unit Comparison Tool</h1>
+      <p class="how-to-use">Enter a base stock’s name, price, and units, then add 1–5 comparison stocks (name and price) to see how many units you could buy with the same investment. Click "Calculate" for results and "Export Report (JPG)" to save as an image.</p>
+    </header>
+
+    <!-- Base Stock Input Card -->
+    <div class="card base-input">
+      <h2>Base Stock</h2>
+      <div class="stock-row">
+        <label>Stock Name: </label><input type="text" id="baseName" placeholder="e.g., AAPL" class="input-field" oninput="showPriceButton('baseName', 'basePriceBtn')"><br>
+        <button id="basePriceBtn" class="price-btn" style="display: none;" onclick="searchStockPrice('baseName')">Get Price</button>
+      </div>
+      <label>Stock Price ($): </label><input type="number" id="basePrice" step="0.01" placeholder="e.g., 400" class="input-field"><br>
+      <label>Units: </label><input type="number" id="baseUnits" placeholder="e.g., 2" class="input-field"><br>
+    </div>
+
+    <!-- Comparison Stocks Card -->
+    <div class="card comparison-input">
+      <h2>Comparison Stocks (1–5, Optional)</h2>
+      <div class="stock-row" id="stockRow1">
+        <label>Stock 1 Name: </label><input type="text" id="stockName1" placeholder="e.g., MSFT" class="input-field" oninput="showPriceButton('stockName1', 'stockPriceBtn1')"><br>
+        <button id="stockPriceBtn1" class="price-btn" style="display: none;" onclick="searchStockPrice('stockName1')">Get Price</button>
+        <label>Stock 1 Price ($): </label><input type="number" id="stock1" step="0.01" placeholder="e.g., 50" class="input-field">
+      </div>
+      <div class="stock-row" id="stockRow2" style="display: none;">
+        <label>Stock 2 Name: </label><input type="text" id="stockName2" placeholder="e.g., GOOGL" class="input-field" oninput="showPriceButton('stockName2', 'stockPriceBtn2')"><br>
+        <button id="stockPriceBtn2" class="price-btn" style="display: none;" onclick="searchStockPrice('stockName2')">Get Price</button>
+        <label>Stock 2 Price ($): </label><input type="number" id="stock2" step="0.01" placeholder="e.g., 100" class="input-field">
+      </div>
+      <div class="stock-row" id="stockRow3" style="display: none;">
+        <label>Stock 3 Name: </label><input type="text" id="stockName3" placeholder="e.g., TSLA" class="input-field" oninput="showPriceButton('stockName3', 'stockPriceBtn3')"><br>
+        <button id="stockPriceBtn3" class="price-btn" style="display: none;" onclick="searchStockPrice('stockName3')">Get Price</button>
+        <label>Stock 3 Price ($): </label><input type="number" id="stock3" step="0.01" placeholder="e.g., 20" class="input-field">
+      </div>
+      <div class="stock-row" id="stockRow4" style="display: none;">
+        <label>Stock 4 Name: </label><input type="text" id="stockName4" placeholder="e.g., FB" class="input-field" oninput="showPriceButton('stockName4', 'stockPriceBtn4')"><br>
+        <button id="stockPriceBtn4" class="price-btn" style="display: none;" onclick="searchStockPrice('stockName4')">Get Price</button>
+        <label>Stock 4 Price ($): </label><input type="number" id="stock4" step="0.01" placeholder="e.g., 200" class="input-field">
+      </div>
+      <div class="stock-row" id="stockRow5" style="display: none;">
+        <label>Stock 5 Name: </label><input type="text" id="stockName5" placeholder="e.g., NFLX" class="input-field" oninput="showPriceButton('stockName5', 'stockPriceBtn5')"><br>
+        <button id="stockPriceBtn5" class="price-btn" style="display: none;" onclick="searchStockPrice('stockName5')">Get Price</button>
+        <label>Stock 5 Price ($): </label><input type="number" id="stock5" step="0.01" placeholder="e.g., 80" class="input-field">
+      </div>
+      <button id="addStockBtn" class="add-stock-btn" onclick="addStockRow()">Add Another Stock</button>
+    </div>
+
+    <!-- Action Card with Buttons -->
+    <div class="card action-card">
+      <button onclick="calculate()" class="calculate-btn">Calculate</button>
+      <button onclick="exportReport()" class="export-btn">Export Report (JPG)</button>
+    </div>
+
+    <!-- Results Card (Report Style) -->
+    <div class="card results" id="resultsSection">
+      <h2>Comparison Report</h2>
+      <p><strong>Base Stock:</strong> <span id="baseStockDisplay"></span></p>
+      <p>Total Investment: <span id="total"></span></p>
+      <h3>Comparison Stocks</h3>
+      <div class="result-item" id="resultItem1">
+        <span><strong>Stock 1 (<span id="stockNameDisplay1"></span>):</strong></span> <span id="result1"></span>
+      </div>
+      <div class="result-item" id="resultItem2" style="display: none;">
+        <span><strong>Stock 2 (<span id="stockNameDisplay2"></span>):</strong></span> <span id="result2"></span>
+      </div>
+      <div class="result-item" id="resultItem3" style="display: none;">
+        <span><strong>Stock 3 (<span id="stockNameDisplay3"></span>):</strong></span> <span id="result3"></span>
+      </div>
+      <div class="result-item" id="resultItem4" style="display: none;">
+        <span><strong>Stock 4 (<span id="stockNameDisplay4"></span>):</strong></span> <span id="result4"></span>
+      </div>
+      <div class="result-item" id="resultItem5" style="display: none;">
+        <span><strong>Stock 5 (<span id="stockNameDisplay5"></span>):</strong></span> <span id="result5"></span>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <footer class="disclaimer">
+      <p><strong>Disclaimer:</strong> This is a beta version of the Stock Unit Comparison Tool. The information provided is for informational purposes only and does not guarantee accuracy or reliability. This tool is not financial advice, and users should conduct their own research or consult a financial advisor before making investment decisions. xAI and its affiliates are not liable for any losses resulting from the use of this tool.</p>
+    </footer>
+  </div>
+
+  <script src="script-unit.js"></script>
+</body>
+</html>
