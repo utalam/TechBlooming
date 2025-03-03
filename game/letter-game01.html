@@ -2,154 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Alphabet Fun Game</title>
     <style>
         body {
             font-family: Arial, sans-serif; /* Web-safe font */
             text-align: center;
-            padding: 20px;
+            padding: 10px; /* Reduced padding for mobile */
             background-color: #4B0082; /* Deep purple background like the image */
             margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         header {
             background-color: #FF69B4; /* Hot pink header */
             padding: 10px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Reduced margin for mobile */
         }
         h1 {
             color: white;
-            font-size: 28px;
+            font-size: 24px; /* Smaller title for mobile */
             margin: 0;
         }
         #how-to-play {
             color: #ffffff; /* White text for "How to Play" to match the purple background */
-            font-size: 18px;
+            font-size: 16px; /* Smaller font for mobile */
             margin: 10px 0;
-            line-height: 1.5;
+            line-height: 1.4; /* Tighter line height for mobile */
+            padding: 0 10px; /* Add padding for readability on small screens */
         }
         #game-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 1000px;
-            margin: 20px auto;
-            gap: 10px;
+            max-width: 100%;
+            margin: 10px auto; /* Reduced margin for mobile */
+            gap: 5px; /* Tighter gap for mobile */
+            touch-action: manipulation; /* Improve touch handling */
         }
         .card {
-            width: 80px; /* Larger cards */
-            height: 100px; /* Larger cards */
-            border: 4px solid #FF4500; /* Orange border for fun */
-            border-radius: 15px;
-            margin: 5px;
+            width: 60px; /* Default smaller size for mobile */
+            height: 80px; /* Default smaller size for mobile */
+            border: 3px solid #FF4500; /* Slightly smaller border for mobile */
+            border-radius: 10px; /* Smaller radius for mobile */
+            margin: 3px; /* Reduced margin for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px; /* Bigger alphabet letters */
+            font-size: 30px; /* Slightly smaller font for mobile default */
             font-weight: 900; /* Extra bold */
             cursor: move;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-            transition: transform 0.2s; /* Smooth hover effect */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+            transition: transform 0.2s; /* Smooth hover/touch effect */
+            touch-action: none; /* Disable default touch actions for drag */
         }
-        .card:hover {
-            transform: scale(1.1); /* Slightly bigger on hover */
+        .card:hover, .card:active {
+            transform: scale(1.1); /* Scale on hover or touch */
         }
         #buttons {
-            margin: 20px 0;
+            margin: 15px 0;
         }
         button {
-            padding: 15px 30px;
-            font-size: 20px;
+            padding: 12px 25px; /* Smaller padding for mobile */
+            font-size: 18px; /* Smaller font for mobile */
             background-color: #32CD32; /* Lime green buttons */
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: 15px; /* Smaller radius for mobile */
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+            margin: 0 5px; /* Tighter margin for mobile */
+            min-width: 120px; /* Ensure buttons are touch-friendly */
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
-        button:hover {
-            background-color: #00FF7F; /* Brighter green on hover */
+        button:hover, button:active {
+            background-color: #00FF7F; /* Brighter green on hover or tap */
         }
         button:disabled {
             background-color: #CCCCCC;
             cursor: not-allowed;
         }
         #timer {
-            font-size: 24px;
+            font-size: 20px; /* Smaller font for mobile */
             color: #FF4500; /* Orange text for visibility */
-            margin: 15px;
+            margin: 10px; /* Reduced margin for mobile */
             font-weight: bold;
         }
         #message {
-            font-size: 22px;
+            font-size: 18px; /* Smaller font for mobile */
             color: #FF1493; /* Deep pink for fun */
-            margin-top: 15px;
+            margin-top: 10px; /* Reduced margin for mobile */
         }
         #score {
-            font-size: 20px;
+            font-size: 16px; /* Smaller font for mobile */
             color: #ffd900; /* Gold for score */
-            margin-top: 10px;
+            margin-top: 10px; /* Reduced margin for mobile */
         }
         #game-description {
             color: #ffffff; /* White text for description to match the purple background */
-            font-size: 16px;
-            margin: 20px auto;
-            max-width: 800px;
-            line-height: 1.5;
+            font-size: 14px; /* Smaller font for mobile */
+            margin: 15px auto;
+            max-width: 90%; /* Full width on mobile */
+            line-height: 1.4; /* Tighter line height for mobile */
+            padding: 0 10px; /* Add padding for readability on small screens */
         }
         #social-buttons {
-            margin: 20px 0;
+            margin: 15px 0;
         }
         .social-button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 8px 15px; /* Smaller padding for mobile */
+            font-size: 14px; /* Smaller font for mobile */
             background-color: #32CD32; /* Lime green buttons */
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: 15px; /* Smaller radius for mobile */
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+            margin: 0 5px; /* Tighter margin for mobile */
+            min-width: 100px; /* Ensure buttons are touch-friendly */
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
-        .social-button:hover {
-            background-color: #00FF7F; /* Brighter green on hover */
+        .social-button:hover, .social-button:active {
+            background-color: #00FF7F; /* Brighter green on hover or tap */
         }
         #like-count {
-            font-size: 16px;
+            font-size: 14px; /* Smaller font for mobile */
             color: #ffd900; /* Gold for like count */
-            margin-top: 10px;
+            margin-top: 10px; /* Reduced margin for mobile */
         }
-        @media (max-width: 768px) {
-            .card {
-                width: 60px;
-                height: 80px;
-                font-size: 30px; /* Slightly smaller for mobile, but still bigger */
+
+        /* Desktop-specific styles (min-width: 769px) */
+        @media (min-width: 769px) {
+            body {
+                padding: 20px;
             }
-            button {
-                padding: 12px 25px;
-                font-size: 18px;
-                margin: 0 5px;
+            header {
+                margin-bottom: 20px;
             }
-            #game-container {
-                max-width: 90%;
+            h1 {
+                font-size: 28px;
             }
             #how-to-play {
-                font-size: 16px;
+                font-size: 18px;
+                line-height: 1.5;
+                padding: 0;
+            }
+            #game-container {
+                margin: 20px auto;
+                gap: 10px;
+            }
+            .card {
+                width: 80px;
+                height: 100px;
+                border: 4px solid #FF4500;
+                border-radius: 15px;
+                margin: 5px;
+                font-size: 40px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            #buttons {
+                margin: 20px 0;
+            }
+            button {
+                padding: 15px 30px;
+                font-size: 20px;
+                border-radius: 20px;
+                margin: 0 10px;
+                min-width: 150px;
+            }
+            #timer {
+                font-size: 24px;
+                margin: 15px;
+            }
+            #message {
+                font-size: 22px;
+                margin-top: 15px;
+            }
+            #score {
+                font-size: 20px;
+                margin-top: 15px;
             }
             #game-description {
-                font-size: 14px;
-                max-width: 90%;
+                font-size: 16px;
+                max-width: 800px;
+                line-height: 1.5;
+                margin: 20px auto;
+                padding: 0;
+            }
+            #social-buttons {
+                margin: 20px 0;
             }
             .social-button {
-                padding: 8px 15px;
-                font-size: 14px;
-                margin: 0 5px;
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 20px;
+                margin: 0 10px;
+                min-width: 120px;
             }
             #like-count {
-                font-size: 14px;
+                font-size: 16px;
+                margin-top: 15px;
             }
         }
     </style>
@@ -241,24 +294,19 @@
                 div.addEventListener("dragstart", dragStart);
                 div.addEventListener("dragover", dragOver);
                 div.addEventListener("drop", drop);
+                div.addEventListener("touchstart", handleTouchStart); // Add touch start for mobile
+                div.addEventListener("touchmove", handleTouchMove); // Add touch move for mobile
+                div.addEventListener("touchend", handleTouchEnd); // Add touch end for mobile
                 container.appendChild(div);
             });
         }
 
-        // Shuffle array (Fisher-Yates)
-        function shuffleCards() {
-            for (let i = cards.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [cards[i], cards[j]] = [cards[j], cards[i]];
-            }
-            renderCards();
-        }
-
-        // Drag-and-drop functions
+        // Drag-and-drop functions for desktop
         let draggedCard = null;
         function dragStart(e) {
             draggedCard = e.target;
             setTimeout(() => draggedCard.style.opacity = "0.5", 0);
+            e.dataTransfer.setData("text/plain", draggedCard.textContent); // For desktop drag
         }
         function dragOver(e) {
             e.preventDefault();
@@ -273,6 +321,72 @@
                 draggedCard.style.opacity = "1";
                 renderCards();
                 checkWin();
+            }
+        }
+
+        // Touch event handlers for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchedCard = null;
+
+        function handleTouchStart(e) {
+            if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                touchedCard = e.target;
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchedCard.style.opacity = "0.5";
+                e.preventDefault(); // Prevent default touch behavior
+            }
+        }
+
+        function handleTouchMove(e) {
+            if (touchedCard && e.touches.length === 1) {
+                const touch = e.touches[0];
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+                touchedCard.style.position = "relative";
+                touchedCard.style.left = `${deltaX}px`;
+                touchedCard.style.top = `${deltaY}px`;
+                e.preventDefault(); // Prevent scrolling
+            }
+        }
+
+        function handleTouchEnd(e) {
+            if (touchedCard) {
+                touchedCard.style.opacity = "1";
+                touchedCard.style.position = "";
+                touchedCard.style.left = "";
+                touchedCard.style.top = "";
+                const touch = e.changedTouches[0];
+                const endX = touch.clientX;
+                const endY = touch.clientY;
+                const cardsArray = Array.from(container.children);
+                let closestCard = null;
+                let minDistance = Infinity;
+
+                cardsArray.forEach(card => {
+                    if (card !== touchedCard) {
+                        const rect = card.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        const distance = Math.sqrt((centerX - endX) ** 2 + (centerY - endY) ** 2);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestCard = card;
+                        }
+                    }
+                });
+
+                if (closestCard && minDistance < 60) { // Threshold for swapping (adjust as needed)
+                    const draggedIdx = cardsArray.indexOf(touchedCard);
+                    const targetIdx = cardsArray.indexOf(closestCard);
+                    [cards[draggedIdx], cards[targetIdx]] = [cards[targetIdx], cards[draggedIdx]];
+                    renderCards();
+                    checkWin();
+                }
+                touchedCard = null;
+                e.preventDefault(); // Prevent default touch behavior
             }
         }
 
@@ -383,6 +497,15 @@
                 alert("Failed to copy link. Please try again.");
                 console.error("Error copying link:", err);
             });
+        }
+
+        // Shuffle array (Fisher-Yates)
+        function shuffleCards() {
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            renderCards();
         }
 
         // Initialize game on load
