@@ -14,132 +14,127 @@
 
   gtag('config', 'G-26DV411343');
 </script>
+
     <style>
         body {
-            font-family: Arial, sans-serif; /* Web-safe font */
+            font-family: Arial, sans-serif; /* Web-safe, kid-friendly font */
             text-align: center;
-            padding: 10px; /* Reduced padding for mobile */
-            background-color: #4B0082; /* Deep purple background like the image */
+            padding: 5px; /* Minimal padding for mobile */
+            background-color: #87CEEB; /* Light blue background from the image */
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         header {
             background-color: #FF69B4; /* Hot pink header */
             padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 10px; /* Reduced margin for mobile */
+            border-radius: 15px; /* Larger radius for playfulness */
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
         }
         h1 {
             color: white;
-            font-size: 24px; /* Smaller title for mobile */
+            font-size: 28px; /* Larger title for mobile visibility */
             margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for readability */
         }
         #how-to-play {
-            color: #ffffff; /* White text for "How to Play" to match the purple background */
-            font-size: 16px; /* Smaller font for mobile */
+            color: #000000; /* Black text for contrast on light blue */
+            font-size: 18px; /* Larger font for mobile readability */
             margin: 10px 0;
-            line-height: 1.4; /* Tighter line height for mobile */
-            padding: 0 10px; /* Add padding for readability on small screens */
+            line-height: 1.6; /* More spacious line height for readability */
+            padding: 0 15px; /* Wider padding for readability on small screens */
+            background-color: rgba(255, 255, 255, 0.8); /* Light semi-transparent background for contrast */
+            border-radius: 10px; /* Rounded corners for playfulness */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
         }
         #game-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             max-width: 100%;
-            margin: 10px auto; /* Reduced margin for mobile */
-            gap: 5px; /* Tighter gap for mobile */
+            margin: 10px auto;
+            gap: 8px; /* Slightly larger gap for mobile */
             touch-action: manipulation; /* Improve touch handling */
+            padding: 0 5px; /* Slight padding for mobile */
         }
         .card {
-            width: 60px; /* Default smaller size for mobile */
-            height: 80px; /* Default smaller size for mobile */
-            border: 3px solid #FF4500; /* Slightly smaller border for mobile */
-            border-radius: 10px; /* Smaller radius for mobile */
-            margin: 3px; /* Reduced margin for mobile */
+            width: 70px; /* Larger cards for mobile */
+            height: 90px; /* Larger cards for mobile */
+            border: 4px solid #FF4500; /* Bright orange border for fun */
+            border-radius: 15px; /* Larger radius for playfulness */
+            margin: 4px; /* Slightly larger margin for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px; /* Slightly smaller font for mobile default */
+            font-size: 36px; /* Larger alphabet letters for mobile */
             font-weight: 900; /* Extra bold */
             cursor: move;
             user-select: none;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
-            transition: transform 0.2s; /* Smooth hover/touch effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+            transition: transform 0.2s; /* Smooth touch/hover effect */
             touch-action: none; /* Disable default touch actions for drag */
+            background-color: #FFFFFF; /* White background for contrast */
         }
         .card:hover, .card:active {
-            transform: scale(1.1); /* Scale on hover or touch */
+            transform: scale(1.1); /* Scale on hover or touch for feedback */
         }
         #buttons {
-            margin: 15px 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px; /* Larger gap for mobile button spacing */
         }
         button {
-            padding: 12px 25px; /* Smaller padding for mobile */
-            font-size: 18px; /* Smaller font for mobile */
-            background-color: #32CD32; /* Lime green buttons */
+            padding: 18px 40px; /* Much larger padding for big, touch-friendly buttons */
+            font-size: 22px; /* Larger font for mobile readability */
+            background-color: #32CD32; /* Bright lime green buttons */
             color: white;
             border: none;
-            border-radius: 15px; /* Smaller radius for mobile */
+            border-radius: 20px; /* Larger radius for playfulness */
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
-            margin: 0 5px; /* Tighter margin for mobile */
-            min-width: 120px; /* Ensure buttons are touch-friendly */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Larger shadow for depth */
+            margin: 0 5px; /* Minimal margin for mobile */
+            min-width: 150px; /* Ensure buttons are large enough for touch */
             -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         button:hover, button:active {
-            background-color: #00FF7F; /* Brighter green on hover or tap */
+            background-color: #00FF7F; /* Brighter green on hover or tap for feedback */
         }
         button:disabled {
             background-color: #CCCCCC;
             cursor: not-allowed;
+            opacity: 0.7;
         }
         #timer {
-            font-size: 20px; /* Smaller font for mobile */
-            color: #FF4500; /* Orange text for visibility */
-            margin: 10px; /* Reduced margin for mobile */
+            font-size: 24px; /* Larger font for mobile visibility */
+            color: #FF4500; /* Bright orange text for visibility */
+            margin: 15px;
             font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add shadow for readability */
         }
         #message {
-            font-size: 18px; /* Smaller font for mobile */
-            color: #FF1493; /* Deep pink for fun */
-            margin-top: 10px; /* Reduced margin for mobile */
+            font-size: 20px; /* Larger font for mobile */
+            color: #FF1493; /* Bright deep pink for fun */
+            margin-top: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add shadow for readability */
         }
         #score {
-            font-size: 16px; /* Smaller font for mobile */
-            color: #ffd900; /* Gold for score */
-            margin-top: 10px; /* Reduced margin for mobile */
+            font-size: 18px; /* Larger font for mobile */
+            color: #000000; /* Bright gold for score */
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add shadow for readability */
         }
         #game-description {
-            color: #ffffff; /* White text for description to match the purple background */
-            font-size: 14px; /* Smaller font for mobile */
+            color: #000000; /* Black text for contrast on light blue */
+            font-size: 16px; /* Larger font for mobile readability */
             margin: 15px auto;
             max-width: 90%; /* Full width on mobile */
-            line-height: 1.4; /* Tighter line height for mobile */
-            padding: 0 10px; /* Add padding for readability on small screens */
-        }
-        #social-buttons {
-            margin: 15px 0;
-        }
-        .social-button {
-            padding: 8px 15px; /* Smaller padding for mobile */
-            font-size: 14px; /* Smaller font for mobile */
-            background-color: #32CD32; /* Lime green buttons */
-            color: white;
-            border: none;
-            border-radius: 15px; /* Smaller radius for mobile */
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
-            margin: 0 5px; /* Tighter margin for mobile */
-            min-width: 100px; /* Ensure buttons are touch-friendly */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-        }
-        .social-button:hover, .social-button:active {
-            background-color: #00FF7F; /* Brighter green on hover or tap */
-        }
-        #like-count {
-            font-size: 14px; /* Smaller font for mobile */
-            color: #ffd900; /* Gold for like count */
-            margin-top: 10px; /* Reduced margin for mobile */
+            line-height: 1.6; /* More spacious line height for readability */
+            padding: 0 15px; /* Wider padding for readability on small screens */
+            background-color: rgba(255, 255, 255, 0.8); /* Light semi-transparent background for contrast */
+            border-radius: 10px; /* Rounded corners for playfulness */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
         }
 
         /* Desktop-specific styles (min-width: 769px) */
@@ -151,68 +146,56 @@
                 margin-bottom: 20px;
             }
             h1 {
-                font-size: 28px;
+                font-size: 36px; /* Larger title for desktop */
             }
             #how-to-play {
-                font-size: 18px;
-                line-height: 1.5;
-                padding: 0;
+                font-size: 20px;
+                line-height: 1.8;
+                padding: 0 20px;
             }
             #game-container {
                 margin: 20px auto;
-                gap: 10px;
+                gap: 12px;
+                padding: 0 10px;
             }
             .card {
-                width: 80px;
-                height: 100px;
-                border: 4px solid #FF4500;
-                border-radius: 15px;
-                margin: 5px;
-                font-size: 40px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 90px; /* Larger cards for desktop */
+                height: 110px; /* Larger cards for desktop */
+                border: 5px solid #FF4500;
+                border-radius: 20px;
+                margin: 6px;
+                font-size: 44px; /* Larger alphabet letters for desktop */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             }
             #buttons {
-                margin: 20px 0;
+                margin: 25px 0;
+                gap: 15px;
             }
             button {
-                padding: 15px 30px;
-                font-size: 20px;
-                border-radius: 20px;
+                padding: 20px 50px; /* Larger padding for desktop */
+                font-size: 24px; /* Larger font for desktop */
+                border-radius: 25px; /* Larger radius for desktop */
                 margin: 0 10px;
-                min-width: 150px;
+                min-width: 180px;
             }
             #timer {
-                font-size: 24px;
-                margin: 15px;
+                font-size: 28px;
+                margin: 20px;
             }
             #message {
-                font-size: 22px;
-                margin-top: 15px;
+                font-size: 24px;
+                margin-top: 20px;
             }
             #score {
-                font-size: 20px;
-                margin-top: 15px;
+                font-size: 22px;
+                margin-top: 20px;
             }
             #game-description {
-                font-size: 16px;
-                max-width: 800px;
-                line-height: 1.5;
+                font-size: 18px;
+                max-width: 900px;
+                line-height: 1.8;
                 margin: 20px auto;
-                padding: 0;
-            }
-            #social-buttons {
-                margin: 20px 0;
-            }
-            .social-button {
-                padding: 10px 20px;
-                font-size: 16px;
-                border-radius: 20px;
-                margin: 0 10px;
-                min-width: 120px;
-            }
-            #like-count {
-                font-size: 16px;
-                margin-top: 15px;
+                padding: 0 20px;
             }
         }
     </style>
@@ -223,12 +206,12 @@
     </header>
     <div id="how-to-play">
         <strong>How to Play:</strong><br>
-        1. Click "Shuffle & Start" to mix up the alphabet cards!<br>
+        1. Tap "Shuffle & Start" to mix up the alphabet cards!<br>
         2. Drag the colorful letters to put them in the correct order (A to Z).<br>
-        3. You have 2 minutes—hurry up and have fun!<br>
-        4. Click "Submit" to check your score and grade.<br>
-        5. If you need help, click "Answer" to see the right order.<br>
-        6. Play again by clicking "Shuffle & Start"!
+        3. You have 2 minutes—have fun and hurry!<br>
+        4. Tap "Submit" to check your score and grade.<br>
+        5. If you need help, tap "Answer" to see the right order.<br>
+        6. Play again by tapping "Shuffle & Start"!
     </div>
     <div id="buttons">
         <button id="shuffle-btn" onclick="startGame()">Shuffle & Start</button>
@@ -239,11 +222,6 @@
     <div id="game-container"></div>
     <div id="game-description">
         This fun game helps train learners to remember the order of the English alphabet (A to Z) in an interesting and colorful way!
-    </div>
-    <div id="social-buttons">
-        <button class="social-button" onclick="likeGame()">Like</button>
-        <button class="social-button" onclick="copyShareLink()">Copy Sharing Link</button>
-        <div id="like-count">Likes: 0</div>
     </div>
     <div id="message"></div>
     <div id="score"></div>
@@ -256,19 +234,10 @@
         const shuffleBtn = document.getElementById("shuffle-btn");
         const submitBtn = document.getElementById("submit-btn");
         const answerBtn = document.getElementById("answer-btn");
-        const likeCountDisplay = document.getElementById("like-count");
         let cards = [];
         let timeLeft = 120; // 2 minutes
         let timer;
         let gameActive = false;
-        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
-
-        // Update like count display
-        function updateLikeCount() {
-            likeCountDisplay.textContent = `Likes: ${likeCount}`;
-            localStorage.setItem('likeCount', likeCount);
-        }
-        updateLikeCount();
 
         // Define vivid and vibrant colors for each card background (matching the image palette: purple, yellow, red, orange, blue)
         const cardBackgroundColors = [
@@ -388,7 +357,7 @@
                     }
                 });
 
-                if (closestCard && minDistance < 60) { // Threshold for swapping (adjust as needed)
+                if (closestCard && minDistance < 70) { // Slightly larger threshold for mobile touch accuracy
                     const draggedIdx = cardsArray.indexOf(touchedCard);
                     const targetIdx = cardsArray.indexOf(closestCard);
                     [cards[draggedIdx], cards[targetIdx]] = [cards[targetIdx], cards[draggedIdx]];
@@ -454,7 +423,7 @@
             else if (score >= 70) grade = "Good";
             else if (score >= 50) grade = "Fair";
             else if (score >= 30) grade = "Need Improvement";
-            else grade = "Poor";
+            else grade = "Need to Study";
 
             scoreDisplay.textContent = `Your Score: ${score}/100 - Grade: ${grade}`;
             messageDisplay.textContent = score === 100 ? "Congratulations! Happy playing!" : "";
@@ -491,24 +460,6 @@
             scoreDisplay.textContent = `Your Score: 100/100 - Grade: Excellent`;
         }
 
-        // Like button functionality
-        function likeGame() {
-            likeCount++;
-            updateLikeCount();
-            alert("Thanks for liking the game!");
-        }
-
-        // Copy sharing link functionality
-        function copyShareLink() {
-            const currentUrl = window.location.href;
-            navigator.clipboard.writeText(currentUrl).then(() => {
-                alert("Link copied to clipboard! Share with friends!");
-            }).catch(err => {
-                alert("Failed to copy link. Please try again.");
-                console.error("Error copying link:", err);
-            });
-        }
-
         // Shuffle array (Fisher-Yates)
         function shuffleCards() {
             for (let i = cards.length - 1; i > 0; i--) {
@@ -522,5 +473,6 @@
         initCards();
     </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91a776d1aaa61d76',t:'MTc0MDk4NzQwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91add6950cd8c5a5',t:'MTc0MTA1NDIzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
