@@ -96,7 +96,7 @@ calculateBtn.addEventListener('click', () => {
     const age = calculateAge(foundedYear);
     const marketValue = formatMarketValue(company.marketValue);
     const companyName = companySelect.options[selectedIndex].text;
-    resultDiv.textContent = `${companyName} is ${age} years old as of ${currentYear} with an approximate market value of ${marketValue}.`;
+    resultDiv.textContent = `${companyName} is ${age} years old as of ${currentYear} with an approximate market value of ${marketValue} (As of Mar 2025).`;
 });
 
 // Sorting functionality
