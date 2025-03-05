@@ -3,50 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Metadata -->
     <meta name="description" content="Enhance your mental math skills with Addition Mental Math Training, a free, engaging, and futuristic online game for practicing single-digit addition. Perfect for students, educators, and math enthusiasts.">
     <meta name="keywords" content="mental math, addition practice, math game, online math training, single-digit addition, free math tool, educational game, math skills">
     <meta name="author" content="Your Name">
     <meta name="robots" content="index, follow">
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XWRN7TST2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1XWRN7TST2');
-</script>
     <title>Addition Mental Math Training</title>
     <style>
         body {
             font-family: 'Orbitron', sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background: #0a1a2a; /* Dark blue background */
+            background: #0a1a2a;
             background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M50 0L75 25H25L50 0Z" fill="rgba(0, 180, 216, 0.1)"/%3E%3C/svg%3E');
             background-size: 50px 50px;
             background-repeat: repeat;
         }
 
-        .container, #contact {
-            background: rgba(0, 0, 0, 0.9); /* Semi-transparent black for contrast */
-            padding: 40px; /* Larger padding for big design */
+        .container {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
             border-radius: 20px;
-            border: 5px solid #00b4d8; /* Neon cyan border */
+            border: 5px solid #00b4d8;
             text-align: center;
-            box-shadow: 0 0 20px #00b4d8; /* Neon cyan glow */
-            position: relative;
-            width: 80%; /* Larger width for big design */
-            max-width: 800px; /* Max width for larger screens */
-            margin-bottom: 20px; /* Space between sections */
+            box-shadow: 0 0 20px #00b4d8;
+            width: 90%;
+            max-width: 600px;
+            margin: 10px auto;
         }
 
-        .container::before, #contact::before {
+        .container::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -60,58 +49,61 @@
         }
 
         .robot-icon {
-            width: 80px; /* Larger icon size */
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background: url('robot01.jpg') no-repeat center;
             background-size: contain;
             display: inline-block;
             vertical-align: middle;
-            margin-right: 15px; /* Increased space */
+            margin-right: 10px;
             position: relative;
             z-index: 1;
         }
 
-        h1, #contact h2 {
-            font-size: 60px; /* Larger for big design */
-            color: #ffffff; /* White text for contrast */
-            text-shadow: 0 0 15px #00b4d8; /* Neon cyan glow */
-            margin-bottom: 20px;
-            font-weight: bold; /* Bold text */
+        h1 {
+            font-size: 48px;
+            color: #ffffff;
+            text-shadow: 0 0 15px #00b4d8;
+            margin-bottom: 15px;
+            font-weight: bold;
             position: relative;
             z-index: 1;
         }
 
         .description {
-            font-size: 20px; /* Larger for big design */
+            font-size: 16px;
             color: #ffffff;
-            margin: 15px 0;
+            margin: 10px 0;
             text-shadow: 0 0 8px #00b4d8;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
             position: relative;
             z-index: 1;
         }
 
         #problem {
-            font-size: 80px; /* Larger for big design */
-            color: #00b4d8; /* Neon cyan from the image */
+            font-size: 64px;
+            color: #00b4d8;
             text-shadow: 0 0 20px #00b4d8;
-            margin: 30px 0;
-            font-weight: bold; /* Bold text */
+            margin: 20px 0;
+            font-weight: bold;
             position: relative;
             z-index: 1;
         }
 
         #answer {
-            font-size: 36px; /* Larger for big design */
+            font-size: 28px;
             padding: 15px;
-            width: 200px; /* Larger width */
+            width: 80%;
+            max-width: 300px;
             border: 3px solid #00b4d8;
-            border-radius: 25px; /* Rounded for futuristic look */
+            border-radius: 25px;
             background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            margin: 20px 0;
+            margin: 20px auto;
+            text-align: center;
+            display: block;
             transition: border-color 0.3s;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
             position: relative;
             z-index: 1;
         }
@@ -122,199 +114,82 @@
             box-shadow: 0 0 15px #00b4d8;
         }
 
-        #submit, #reveal, #reset, #contact button {
-            font-size: 28px; /* Larger for big design */
-            padding: 15px 40px; /* Larger padding */
+        #submit, #reveal, #reset {
+            font-size: 24px;
+            padding: 12px 30px;
             background: none;
             border: 3px solid #00b4d8;
             color: #00b4d8;
-            border-radius: 25px; /* Rounded buttons */
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s;
-            margin: 0 10px;
-            font-weight: bold; /* Bold text */
+            margin: 10px 5px;
+            font-weight: bold;
+            min-width: 120px;
             position: relative;
             z-index: 1;
         }
 
-        #submit:hover, #reveal:hover, #reset:hover, #contact button:hover {
+        #submit:hover, #reveal:hover, #reset:hover {
             background: #00b4d8;
             color: #000000;
             box-shadow: 0 0 20px #00b4d8;
         }
 
-        #score {
-            font-size: 28px; /* Larger for big design */
+        #score, #question-count {
+            font-size: 24px;
             color: #ffffff;
             text-shadow: 0 0 12px #00b4d8;
-            margin: 20px 0;
-            font-weight: bold; /* Bold text */
+            margin: 15px 0;
+            font-weight: bold;
             position: relative;
             z-index: 1;
         }
 
         #feedback {
-            font-size: 32px; /* Larger for big design */
-            margin: 20px 0;
-            font-weight: bold; /* Bold text */
+            font-size: 28px;
+            margin: 15px 0;
+            font-weight: bold;
             position: relative;
             z-index: 1;
         }
 
-        #question-count {
-            font-size: 24px; /* Larger for big design */
-            color: #00b4d8;
-            font-weight: bold; /* Bold text */
-            position: relative;
-            z-index: 1;
-        }
-
-        #contact {
-            margin-top: 20px; /* Space above contact section */
-            margin-left: 30px;
-        }
-
-        #contact h2 {
-            margin-bottom: 20px;
-        }
-
-        #contact form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        #contact input, #contact textarea {
-            font-size: 20px; /* Larger for big design */
-            padding: 12px;
-            width: 80%; /* Responsive width */
-            max-width: 400px;
-            border: 3px solid #00b4d8;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            font-weight: bold; /* Bold text */
-            transition: border-color 0.3s;
-        }
-
-        #contact input:focus, #contact textarea:focus {
-            border-color: #ffffff;
-            outline: none;
-            box-shadow: 0 0 15px #00b4d8;
-        }
-
-        #contact textarea {
-            height: 150px; /* Fixed height for textarea */
-            resize: vertical; /* Allow vertical resizing */
-        }
-
-        /* Mobile-specific adjustments */
         @media (max-width: 768px) {
-            .container, #contact {
-                padding: 20px;
-                width: 85%;
-                max-width: 500px;
+            .container {
+                padding: 15px;
+                width: 95%;
             }
-
-            .robot-icon {
-                width: 40px; /* Smaller icon on mobile */
-                height: 40px;
-                margin-right: 10px;
-            }
-
-            h1, #contact h2 {
-                font-size: 40px;
-            }
-
-            .description {
-                font-size: 16px;
-            }
-
-            #problem {
-                font-size: 60px;
-            }
-
-            #answer {
-                font-size: 24px;
-                width: 150px;
-                padding: 10px;
-            }
-
-            #submit, #reveal, #reset, #contact button {
-                font-size: 20px;
-                padding: 12px 30px;
-                margin: 0 5px;
-            }
-
-            #score, #feedback, #question-count {
-                font-size: 20px;
-            }
-
-            #contact input, #contact textarea {
-                font-size: 16px;
-                padding: 10px;
-                width: 90%;
-                max-width: 300px;
-            }
-
-            #contact textarea {
-                height: 120px;
-            }
+            h1 { font-size: 36px; }
+            .robot-icon { width: 40px; height: 40px; }
+            #problem { font-size: 48px; }
+            #answer { font-size: 24px; width: 85%; padding: 12px; }
+            #submit, #reveal, #reset { font-size: 20px; padding: 10px 25px; }
         }
 
         @media (max-width: 480px) {
-            .container, #contact {
-                padding: 15px;
-                width: 90%;
-            }
-
-            .robot-icon {
-                width: 30px; /* Even smaller on very small screens */
-                height: 30px;
-                margin-right: 5px;
-            }
-
-            h1, #contact h2 {
-                font-size: 30px;
-            }
-
-            .description {
-                font-size: 14px;
-            }
-
-            #problem {
-                font-size: 50px;
-            }
-
-            #answer {
-                font-size: 20px;
-                width: 120px;
-                padding: 8px;
-            }
-
-            #submit, #reveal, #reset, #contact button {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-
-            #score, #feedback, #question-count {
-                font-size: 16px;
-            }
-
-            #contact input, #contact textarea {
-                font-size: 14px;
-                padding: 8px;
-                width: 95%;
-                max-width: 250px;
-            }
-
-            #contact textarea {
-                height: 100px;
-            }
+            .container { padding: 10px; }
+            h1 { font-size: 28px; }
+            .robot-icon { width: 30px; height: 30px; }
+            .description { font-size: 14px; }
+            #problem { font-size: 40px; }
+            #answer { font-size: 20px; width: 90%; padding: 10px; }
+            #submit, #reveal, #reset { font-size: 18px; padding: 8px 20px; min-width: 100px; }
+            #score, #question-count { font-size: 20px; }
+            #feedback { font-size: 24px; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+     <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XWRN7TST2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1XWRN7TST2');
+</script>
+
 </head>
 <body>
     <div class="container">
@@ -332,19 +207,7 @@
         <div id="question-count">Question: 1/10</div>
         <div id="feedback"></div>
         <button id="reset">Reset</button>
-   
-
-    <!-- <section id="contact">
-        <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/meoebpbn" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section> -->
-
-</div>
+    </div>
 
     <script>
         let score = 0;
@@ -390,7 +253,6 @@
         }
 
         function revealAnswer() {
-            // Always reveal the answer without deducting points
             document.getElementById('feedback').textContent = `Correct answer is ${correctAnswer}`;
             document.getElementById('feedback').style.color = "#00b4d8";
             setTimeout(() => {
