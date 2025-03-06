@@ -1,0 +1,298 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB, #ADD8E6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.game-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #4B0082;
+    margin: 15px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.description {
+    font-size: 1.1em;
+    color: #6A5ACD;
+    margin: 10px 0 25px 0;
+    font-style: italic;
+}
+
+#input-phase, #study-phase, #game-phase {
+    margin: 20px 0;
+}
+
+#word-input {
+    padding: 12px;
+    font-size: 1.2em;
+    width: 60%;
+    max-width: 200px;
+    border: none;
+    border-radius: 20px;
+    background: #E6E6FA;
+    margin-right: 15px;
+    outline: none;
+}
+
+#add-btn {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    background: linear-gradient(90deg, #32CD32, #3CB371);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#add-btn:hover {
+    background: linear-gradient(90deg, #3CB371, #32CD32);
+}
+
+.word-list {
+    margin: 15px 0;
+    font-size: 1.3em;
+    color: #4B0082;
+}
+
+.timer {
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: #6A5ACD;
+    font-weight: bold;
+}
+
+.study-box {
+    border: 3px solid #9370DB;
+    padding: 20px;
+    margin: 20px 0;
+    background: linear-gradient(135deg, #E6E6FA, #D8BFD8);
+    border-radius: 20px;
+    font-size: 1.4em;
+    color: #4B0082;
+}
+
+.answer-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.answer-box {
+    min-height: 60px;
+    border: 3px dashed #9370DB;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #E6E6FA;
+    border-radius: 20px;
+}
+
+.answer-box.correct {
+    border-color: #32CD32;
+    background: #E8F5E9;
+}
+
+.answer-box.incorrect {
+    border-color: #FF4500;
+    background: #FFE4E1;
+}
+
+.letter-pool {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #D8BFD8, #E6E6FA);
+    border-radius: 20px;
+}
+
+.letter-tile {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #32CD32, #3CB371);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    border-radius: 50%;
+    cursor: move;
+    user-select: none;
+    touch-action: none;
+    transition: transform 0.2s;
+}
+
+.letter-tile:hover {
+    transform: scale(1.1);
+}
+
+.feedback {
+    margin: 20px 0;
+    font-size: 1.3em;
+    color: #4B0082;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    min-width: 120px;
+    transition: background 0.3s;
+}
+
+#play-btn {
+    background: linear-gradient(90deg, #FF4500, #FF6347);
+}
+
+#play-btn:hover {
+    background: linear-gradient(90deg, #FF6347, #FF4500);
+}
+
+#add-time-btn {
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+#add-time-btn:hover {
+    background: linear-gradient(90deg, #FFA500, #FFD700);
+}
+
+#start-btn, #start-study-btn {
+    background: linear-gradient(90deg, #6A5ACD, #9370DB);
+}
+
+#start-btn:hover, #start-study-btn:hover {
+    background: linear-gradient(90deg, #9370DB, #6A5ACD);
+}
+
+#clear-btn {
+    background: linear-gradient(90deg, #808080, #A9A9A9);
+}
+
+#clear-btn:hover {
+    background: linear-gradient(90deg, #A9A9A9, #808080);
+}
+
+#submit-btn {
+    background: linear-gradient(90deg, #32CD32, #3CB371);
+}
+
+#submit-btn:hover {
+    background: linear-gradient(90deg, #3CB371, #32CD32);
+}
+
+#answer-btn {
+    background: linear-gradient(90deg, #FFA500, #FFD700);
+}
+
+#answer-btn:hover {
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+#replay-btn {
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+#replay-btn:hover {
+    background: linear-gradient(90deg, #FFA500, #FFD700);
+}
+
+#input-new-words-btn {
+    background: linear-gradient(90deg, #6A5ACD, #9370DB);
+}
+
+#input-new-words-btn:hover {
+    background: linear-gradient(90deg, #9370DB, #6A5ACD);
+}
+
+#restart-btn {
+    background: linear-gradient(90deg, #FF4500, #FF6347); /* Distinct orange gradient */
+}
+
+#restart-btn:hover {
+    background: linear-gradient(90deg, #FF6347, #FF4500);
+}
+
+@media (max-width: 480px) {
+    .letter-tile {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+    .answer-box {
+        min-height: 50px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .description {
+        font-size: 0.9em;
+    }
+    button {
+        min-width: 100px;
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    #word-input {
+        width: 50%;
+        padding: 10px;
+        font-size: 1em;
+    }
+    .word-list {
+        font-size: 1.1em;
+    }
+    .timer {
+        font-size: 1.2em;
+    }
+    .study-box {
+        font-size: 1.2em;
+        padding: 15px;
+    }
+    .feedback {
+        font-size: 1.1em;
+    }
+    .letter-pool {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        padding: 10px;
+    }
+    .answer-boxes {
+        gap: 10px;
+    }
+    .button-group {
+        gap: 10px;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordRush</title>
+    <link rel="stylesheet" href="styles-wordrush.css">
+
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFLVNS212Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XFLVNS212Y');
+</script>
+
+</head>
+<body>
+    <div class="game-container">
+        <h1>WordRush</h1>
+        <p class="description">Enter 2-8 words to study for 1 minute, then drag and drop their shuffled letters to reform them!</p>
+        <div id="input-phase">
+            <input type="text" id="word-input" placeholder="Enter a word (2-8 words total)">
+            <button id="add-btn">Add</button>
+            <div id="word-list" class="word-list"></div>
+            <div class="button-group">
+                <button id="start-study-btn" style="display: none;">Start Study</button>
+                <button id="input-new-words-btn" style="display: none;">Input New Words</button>
+            </div>
+        </div>
+        <div id="study-phase" style="display: none;">
+            <div id="timer" class="timer"></div>
+            <div id="study-box" class="study-box"></div>
+            <div class="button-group">
+                <button id="play-btn">Play Now</button>
+                <button id="add-time-btn">+1 Min</button>
+                <button id="start-btn" style="display: none;">Start</button>
+            </div>
+        </div>
+        <div id="game-phase" style="display: none;">
+            <div id="answer-boxes" class="answer-boxes"></div>
+            <div id="letter-pool" class="letter-pool"></div>
+            <div id="feedback" class="feedback"></div>
+            <div class="button-group">
+                <button id="clear-btn">Clear</button>
+                <button id="submit-btn">Submit</button>
+                <button id="answer-btn">Answer</button>
+                <button id="replay-btn">Play Again</button>
+                <button id="restart-btn">Restart</button> <!-- New Restart Button -->
+                <button id="input-new-words-btn" style="display: none;">Input New Words</button>
+            </div>
+        </div>
+        <div id="feedback" class="feedback"></div>
+    </div>
+    <script src="script-wordrush.js"></script>
+</body>
+</html>
