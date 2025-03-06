@@ -8,6 +8,9 @@ body {
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
+    -webkit-user-select: none; /* Prevent text selection on mobile */
+    user-select: none;
+    touch-action: manipulation; /* Improve touch handling */
 }
 
 .game-container {
@@ -42,7 +45,7 @@ h1 {
 }
 
 #word-input {
-    padding: 12px;
+    padding: 15px; /* Increased for better touch target */
     font-size: 1.2em;
     width: 60%;
     max-width: 200px;
@@ -51,16 +54,18 @@ h1 {
     background: #E6E6FA;
     margin-right: 15px;
     outline: none;
+    -webkit-appearance: none; /* Remove Safari input styling */
 }
 
 #add-btn {
-    padding: 12px 25px;
+    padding: 15px 25px; /* Increased for better touch target */
     font-size: 1.2em;
     background: linear-gradient(90deg, #32CD32, #3CB371);
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on Safari */
 }
 
 #add-btn:hover {
@@ -93,21 +98,22 @@ h1 {
 .answer-boxes {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Increased for touch separation */
     margin: 20px 0;
 }
 
 .answer-box {
-    min-height: 60px;
+    min-height: 70px; /* Increased for touch target */
     border: 3px dashed #9370DB;
     padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px; /* Increased for touch separation */
     background: #E6E6FA;
     border-radius: 20px;
+    touch-action: manipulation; /* Allow touch events */
 }
 
 .answer-box.correct {
@@ -123,28 +129,30 @@ h1 {
 .letter-pool {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+    gap: 15px; /* Increased for touch separation */
     justify-content: center;
     margin-top: 20px;
     padding: 15px;
     background: linear-gradient(135deg, #D8BFD8, #E6E6FA);
     border-radius: 20px;
+    touch-action: manipulation;
 }
 
 .letter-tile {
-    width: 50px;
-    height: 50px;
+    width: 60px; /* Increased for better touch target */
+    height: 60px; /* Increased for better touch target */
     background: linear-gradient(135deg, #32CD32, #3CB371);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
+    font-size: 1.7em; /* Increased for readability */
     border-radius: 50%;
     cursor: move;
     user-select: none;
-    touch-action: none;
+    touch-action: manipulation;
     transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .letter-tile:hover {
@@ -159,19 +167,20 @@ h1 {
 
 .button-group {
     display: flex;
-    gap: 15px;
+    gap: 20px; /* Increased for touch separation */
     justify-content: center;
     flex-wrap: wrap;
 }
 
 button {
-    padding: 12px 25px;
+    padding: 15px 25px; /* Increased for better touch target */
     font-size: 1.2em;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     min-width: 120px;
     transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #play-btn {
@@ -239,7 +248,7 @@ button {
 }
 
 #restart-btn {
-    background: linear-gradient(90deg, #FF4500, #FF6347); /* Distinct orange gradient */
+    background: linear-gradient(90deg, #FF4500, #FF6347);
 }
 
 #restart-btn:hover {
@@ -248,12 +257,13 @@ button {
 
 @media (max-width: 480px) {
     .letter-tile {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2em;
+        width: 50px; /* Reduced but still touch-friendly */
+        height: 50px;
+        font-size: 1.4em; /* Adjusted for readability */
     }
     .answer-box {
-        min-height: 50px;
+        min-height: 60px;
+        gap: 10px;
     }
     h1 {
         font-size: 2em;
@@ -263,12 +273,12 @@ button {
     }
     button {
         min-width: 100px;
-        padding: 10px 20px;
+        padding: 12px 20px; /* Adjusted for mobile */
         font-size: 1em;
     }
     #word-input {
         width: 50%;
-        padding: 10px;
+        padding: 12px;
         font-size: 1em;
     }
     .word-list {
@@ -286,13 +296,13 @@ button {
     }
     .letter-pool {
         grid-template-columns: repeat(5, 1fr);
-        gap: 8px;
+        gap: 10px;
         padding: 10px;
     }
     .answer-boxes {
-        gap: 10px;
+        gap: 15px;
     }
     .button-group {
-        gap: 10px;
+        gap: 15px;
     }
 }

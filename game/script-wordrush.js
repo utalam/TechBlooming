@@ -156,68 +156,81 @@ function renderLetterPool() {
         tile.textContent = letter;
         tile.draggable = true;
         tile.dataset.index = index;
-        addDragEvents(tile);
+        addDragAndTouchEvents(tile);
         letterPool.appendChild(tile);
     });
 }
 
-function addDragEvents(tile) {
-    tile.addEventListener('dragstart', dragStart);
-    tile.addEventListener('touchstart', touchStart, { passive: false });
-    tile.addEventListener('touchmove', touchMove, { passive: false });
-    tile.addEventListener('touchend', touchEnd, { passive: false });
-}
+function addDragAndTouchEvents(tile) {
+    // Desktop Drag-and-Drop Events
+    tile.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', tile.textContent);
+        e.dataTransfer.setData('index', tile.dataset.index);
+        e.dataTransfer.setData('fromPool', tile.parentElement.id === 'letter-pool');
+    });
 
-function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.textContent);
-    e.dataTransfer.setData('index', e.target.dataset.index);
-    e.dataTransfer.setData('fromPool', e.target.parentElement.id === 'letter-pool');
-}
+    // Touch Events for Mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isDragging = false;
 
-let draggedTile = null;
-function touchStart(e) {
-    e.preventDefault();
-    draggedTile = e.target;
-    draggedTile.style.opacity = '0.5';
-}
+    tile.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        isDragging = true;
+        tile.style.opacity = '0.5';
+        tile.style.position = 'absolute';
+        tile.style.zIndex = '1000';
+        document.body.appendChild(tile); // Move to body for smooth dragging
+    }, { passive: false });
 
-function touchMove(e) {
-    e.preventDefault();
-    const touch = e.touches[0];
-    draggedTile.style.position = 'absolute';
-    draggedTile.style.left = `${touch.pageX - 25}px`;
-    draggedTile.style.top = `${touch.pageY - 25}px`;
-}
+    tile.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (isDragging) {
+            const touch = e.touches[0];
+            tile.style.left = `${touch.clientX - 30}px`;
+            tile.style.top = `${touch.clientY - 30}px`;
+        }
+    }, { passive: false });
 
-function touchEnd(e) {
-    e.preventDefault();
-    const touch = e.changedTouches[0];
-    const dropZone = document.elementFromPoint(touch.pageX, touch.pageY);
-    if (dropZone && (dropZone.className.includes('answer-box') || dropZone.id === 'letter-pool')) {
-        dropLetter({
-            target: dropZone,
-            dataTransfer: {
-                getData: (key) => key === 'text/plain' ? draggedTile.textContent : key === 'fromPool' ? (draggedTile.parentElement.id === 'letter-pool') : draggedTile.dataset.index
+    tile.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        if (isDragging) {
+            const touch = e.changedTouches[0];
+            const dropZone = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (dropZone && (dropZone.className.includes('answer-box') || dropZone.id === 'letter-pool')) {
+                dropLetter({
+                    target: dropZone,
+                    dataTransfer: {
+                        getData: (key) => key === 'text/plain' ? tile.textContent : key === 'index' ? tile.dataset.index : tile.parentElement.id === 'letter-pool'
+                    }
+                }, dropZone.id === 'letter-pool');
             }
-        }, dropZone.id === 'letter-pool');
-    }
-    draggedTile.style.opacity = '1';
-    draggedTile.style.position = 'static';
-    draggedTile = null;
+            tile.style.opacity = '1';
+            tile.style.position = 'static';
+            tile.style.zIndex = 'auto';
+            if (tile.parentElement !== letterPool && tile.parentElement !== document.body) {
+                letterPool.appendChild(tile); // Return to pool if not dropped
+            }
+            isDragging = false;
+        }
+    }, { passive: false });
 }
 
 function dropLetter(e, toPool) {
     e.preventDefault();
-    const letter = e.dataTransfer.getData('text/plain');
-    const index = e.dataTransfer.getData('index');
-    const fromPool = e.dataTransfer.getData('fromPool') === 'true';
-    
+    const letter = e.dataTransfer.getData('text/plain') || e.target.textContent;
+    const index = e.dataTransfer.getData('index') || e.target.dataset.index;
+    const fromPool = e.dataTransfer.getData('fromPool') !== undefined ? e.dataTransfer.getData('fromPool') === 'true' : e.target.parentElement.id === 'letter-pool';
+    const draggedTile = document.querySelector(`.letter-tile[data-index="${index}"]`) || e.target;
+
     if (toPool) {
         if (!fromPool) {
             // Dragging from box to pool
             shuffledLetters.push(letter);
-            const draggedTile = e.target.parentElement.querySelector(`.letter-tile[data-index="${index}"]`) || e.target;
-            if (draggedTile && draggedTile.parentElement) {
+            if (draggedTile && draggedTile.parentElement && draggedTile.parentElement !== letterPool) {
                 draggedTile.parentElement.removeChild(draggedTile);
             }
             renderLetterPool();
@@ -229,14 +242,13 @@ function dropLetter(e, toPool) {
         tile.textContent = letter;
         tile.draggable = true;
         tile.dataset.index = index;
-        addDragEvents(tile);
+        addDragAndTouchEvents(tile);
         e.target.appendChild(tile);
         if (fromPool) {
             shuffledLetters.splice(index, 1);
             renderLetterPool();
         } else {
-            const draggedTile = e.target.parentElement.querySelector(`.letter-tile[data-index="${index}"]`) || e.target;
-            if (draggedTile && draggedTile.parentElement) {
+            if (draggedTile && draggedTile.parentElement && draggedTile.parentElement !== e.target) {
                 draggedTile.parentElement.removeChild(draggedTile);
             }
         }
@@ -286,7 +298,7 @@ submitBtn.addEventListener('click', () => {
         console.log(`Box ${boxIndex}: Submitted [${word}], Correct: ${isCorrect}, Used Words: ${[...usedWords]}`);
     }
 
-    feedback.textContent = allCorrect ? 'All words are correct!' : 'Some words are incorrect.';
+    feedback.textContent = allCorrect ? 'All words are correct!' : 'Some words are incorrect';
 });
 
 answerBtn.addEventListener('click', () => {
@@ -300,6 +312,7 @@ answerBtn.addEventListener('click', () => {
             const tile = document.createElement('div');
             tile.className = 'letter-tile';
             tile.textContent = letter;
+            addDragAndTouchEvents(tile);
             box.appendChild(tile);
         });
         box.style.pointerEvents = 'none';
