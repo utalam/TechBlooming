@@ -8,9 +8,10 @@ body {
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
-    -webkit-user-select: none; /* Prevent text selection on mobile */
+    -webkit-user-select: none;
     user-select: none;
-    touch-action: manipulation; /* Improve touch handling */
+    touch-action: none; /* Prevent scrolling during drag */
+    overscroll-behavior: none; /* Prevent pull-to-refresh */
 }
 
 .game-container {
@@ -45,7 +46,7 @@ h1 {
 }
 
 #word-input {
-    padding: 15px; /* Increased for better touch target */
+    padding: 15px;
     font-size: 1.2em;
     width: 60%;
     max-width: 200px;
@@ -54,18 +55,18 @@ h1 {
     background: #E6E6FA;
     margin-right: 15px;
     outline: none;
-    -webkit-appearance: none; /* Remove Safari input styling */
+    -webkit-appearance: none;
 }
 
 #add-btn {
-    padding: 15px 25px; /* Increased for better touch target */
+    padding: 15px 25px;
     font-size: 1.2em;
     background: linear-gradient(90deg, #32CD32, #3CB371);
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on Safari */
+    -webkit-tap-highlight-color: transparent;
 }
 
 #add-btn:hover {
@@ -98,22 +99,21 @@ h1 {
 .answer-boxes {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Increased for touch separation */
+    gap: 20px;
     margin: 20px 0;
 }
 
 .answer-box {
-    min-height: 70px; /* Increased for touch target */
+    min-height: 70px;
     border: 3px dashed #9370DB;
     padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px; /* Increased for touch separation */
+    gap: 15px;
     background: #E6E6FA;
     border-radius: 20px;
-    touch-action: manipulation; /* Allow touch events */
 }
 
 .answer-box.correct {
@@ -129,28 +129,27 @@ h1 {
 .letter-pool {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 15px; /* Increased for touch separation */
+    gap: 15px;
     justify-content: center;
     margin-top: 20px;
     padding: 15px;
     background: linear-gradient(135deg, #D8BFD8, #E6E6FA);
     border-radius: 20px;
-    touch-action: manipulation;
 }
 
 .letter-tile {
-    width: 60px; /* Increased for better touch target */
-    height: 60px; /* Increased for better touch target */
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, #32CD32, #3CB371);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.7em; /* Increased for readability */
+    font-size: 1.7em;
     border-radius: 50%;
     cursor: move;
     user-select: none;
-    touch-action: manipulation;
+    touch-action: none;
     transition: transform 0.2s;
     -webkit-tap-highlight-color: transparent;
 }
@@ -167,13 +166,13 @@ h1 {
 
 .button-group {
     display: flex;
-    gap: 20px; /* Increased for touch separation */
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 button {
-    padding: 15px 25px; /* Increased for better touch target */
+    padding: 15px 25px;
     font-size: 1.2em;
     border: none;
     border-radius: 20px;
@@ -257,9 +256,9 @@ button {
 
 @media (max-width: 480px) {
     .letter-tile {
-        width: 50px; /* Reduced but still touch-friendly */
+        width: 50px;
         height: 50px;
-        font-size: 1.4em; /* Adjusted for readability */
+        font-size: 1.4em;
     }
     .answer-box {
         min-height: 60px;
@@ -273,7 +272,7 @@ button {
     }
     button {
         min-width: 100px;
-        padding: 12px 20px; /* Adjusted for mobile */
+        padding: 12px 20px;
         font-size: 1em;
     }
     #word-input {

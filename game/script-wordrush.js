@@ -22,6 +22,7 @@ const replayBtn = document.getElementById('replay-btn');
 
 let studyWords = [];
 let shuffledLetters = [];
+let tileIdCounter = 0; // Unique ID for each tile
 let timer;
 
 addBtn.addEventListener('click', () => {
@@ -88,22 +89,17 @@ startBtn.addEventListener('click', () => {
 });
 
 inputNewWordsBtn.addEventListener('click', () => {
-    studyWords = [];
-    shuffledLetters = [];
-    inputPhase.style.display = 'block';
-    studyPhase.style.display = 'none';
-    gamePhase.style.display = 'none';
-    wordList.textContent = '';
-    feedback.textContent = '';
-    startStudyBtn.style.display = 'none';
-    inputNewWordsBtn.style.display = 'none';
-    answerBoxes.innerHTML = '';
-    letterPool.innerHTML = '';
+    resetGame(false);
 });
 
 restartBtn.addEventListener('click', () => {
+    resetGame(true);
+});
+
+function resetGame(fullReset) {
     studyWords = [];
     shuffledLetters = [];
+    tileIdCounter = 0;
     inputPhase.style.display = 'block';
     studyPhase.style.display = 'none';
     gamePhase.style.display = 'none';
@@ -113,31 +109,35 @@ restartBtn.addEventListener('click', () => {
     inputNewWordsBtn.style.display = 'none';
     answerBoxes.innerHTML = '';
     letterPool.innerHTML = '';
-    clearBtn.style.display = 'none';
-    submitBtn.style.display = 'none';
-    answerBtn.style.display = 'none';
-    replayBtn.style.display = 'none';
-    restartBtn.style.display = 'none';
-});
+    if (fullReset) {
+        clearBtn.style.display = 'none';
+        submitBtn.style.display = 'none';
+        answerBtn.style.display = 'none';
+        replayBtn.style.display = 'none';
+        restartBtn.style.display = 'none';
+    }
+}
 
 function setupGame() {
-    shuffledLetters = shuffleArray(studyWords.join('').split(''));
+    shuffledLetters = shuffleArray(studyWords.join('').split('')).map((letter, index) => ({
+        letter,
+        id: `tile-${tileIdCounter++}`
+    }));
     
     for (let i = 0; i < studyWords.length; i++) {
         const box = document.createElement('div');
         box.className = 'answer-box';
         box.id = `answer-box-${i}`;
-        box.addEventListener('dragover', (e) => e.preventDefault());
-        box.addEventListener('drop', (e) => dropLetter(e, false));
         answerBoxes.appendChild(box);
     }
 
-    letterPool.addEventListener('dragover', (e) => e.preventDefault());
-    letterPool.addEventListener('drop', (e) => dropLetter(e, true));
     renderLetterPool();
     replayBtn.style.display = 'block';
     inputNewWordsBtn.style.display = 'block';
     restartBtn.style.display = 'block';
+    submitBtn.style.display = 'block';
+    answerBtn.style.display = 'block';
+    clearBtn.style.display = 'block';
 }
 
 function shuffleArray(array) {
@@ -150,138 +150,156 @@ function shuffleArray(array) {
 
 function renderLetterPool() {
     letterPool.innerHTML = '';
-    shuffledLetters.forEach((letter, index) => {
-        const tile = document.createElement('div');
-        tile.className = 'letter-tile';
-        tile.textContent = letter;
-        tile.draggable = true;
-        tile.dataset.index = index;
-        addDragAndTouchEvents(tile);
+    shuffledLetters.forEach(({ letter, id }) => {
+        const tile = createTile(letter, id);
         letterPool.appendChild(tile);
     });
 }
 
-function addDragAndTouchEvents(tile) {
-    // Desktop Drag-and-Drop Events
-    tile.addEventListener('dragstart', (e) => {
-        e.dataTransfer.setData('text/plain', tile.textContent);
-        e.dataTransfer.setData('index', tile.dataset.index);
-        e.dataTransfer.setData('fromPool', tile.parentElement.id === 'letter-pool');
+function createTile(letter, id) {
+    const tile = document.createElement('div');
+    tile.className = 'letter-tile';
+    tile.textContent = letter;
+    tile.dataset.id = id;
+    addInteractionEvents(tile);
+    return tile;
+}
+
+function addInteractionEvents(tile) {
+    let isDragging = false;
+    let clone = null;
+    let startX, startY;
+
+    // Desktop Drag Events
+    tile.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        startDragging(tile, e.clientX, e.clientY);
     });
 
-    // Touch Events for Mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let isDragging = false;
-
+    // Touch Events
     tile.addEventListener('touchstart', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
-        touchStartX = touch.clientX;
-        touchStartY = touch.clientY;
         isDragging = true;
-        tile.style.opacity = '0.5';
-        tile.style.position = 'absolute';
-        tile.style.zIndex = '1000';
-        document.body.appendChild(tile); // Move to body for smooth dragging
+        startX = touch.clientX;
+        startY = touch.clientY;
+        startDragging(tile, touch.clientX, touch.clientY);
     }, { passive: false });
 
-    tile.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        if (isDragging) {
+    function startDragging(originalTile, x, y) {
+        clone = originalTile.cloneNode(true);
+        clone.style.position = 'absolute';
+        clone.style.zIndex = '1000';
+        clone.style.opacity = '0.8';
+        const rect = originalTile.getBoundingClientRect();
+        clone.style.left = rect.left + 'px';
+        clone.style.top = rect.top + 'px';
+        clone.style.width = rect.width + 'px';
+        clone.style.height = rect.height + 'px';
+        document.body.appendChild(clone);
+        originalTile.style.opacity = '0.5';
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging && clone) {
+            e.preventDefault();
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+            const rect = tile.getBoundingClientRect();
+            clone.style.left = `${rect.left + deltaX}px`;
+            clone.style.top = `${rect.top + deltaY}px`;
+        }
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (isDragging && clone) {
+            e.preventDefault();
             const touch = e.touches[0];
-            tile.style.left = `${touch.clientX - 30}px`;
-            tile.style.top = `${touch.clientY - 30}px`;
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            const rect = tile.getBoundingClientRect();
+            clone.style.left = `${rect.left + deltaX}px`;
+            clone.style.top = `${rect.top + deltaY}px`;
         }
     }, { passive: false });
 
-    tile.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        if (isDragging) {
+    document.addEventListener('mouseup', (e) => {
+        if (isDragging && clone) {
+            handleDrop(tile, e.clientX, e.clientY);
+            isDragging = false;
+        }
+    });
+
+    document.addEventListener('touchend', (e) => {
+        if (isDragging && clone) {
             const touch = e.changedTouches[0];
-            const dropZone = document.elementFromPoint(touch.clientX, touch.clientY);
-            if (dropZone && (dropZone.className.includes('answer-box') || dropZone.id === 'letter-pool')) {
-                dropLetter({
-                    target: dropZone,
-                    dataTransfer: {
-                        getData: (key) => key === 'text/plain' ? tile.textContent : key === 'index' ? tile.dataset.index : tile.parentElement.id === 'letter-pool'
-                    }
-                }, dropZone.id === 'letter-pool');
-            }
-            tile.style.opacity = '1';
-            tile.style.position = 'static';
-            tile.style.zIndex = 'auto';
-            if (tile.parentElement !== letterPool && tile.parentElement !== document.body) {
-                letterPool.appendChild(tile); // Return to pool if not dropped
-            }
+            handleDrop(tile, touch.clientX, touch.clientY);
             isDragging = false;
         }
     }, { passive: false });
+
+    function handleDrop(originalTile, x, y) {
+        clone.style.display = 'none';
+        const dropTarget = document.elementFromPoint(x, y);
+        clone.style.display = 'block';
+
+        if (dropTarget) {
+            const isPool = dropTarget.id === 'letter-pool' || dropTarget.closest('#letter-pool');
+            const isAnswerBox = dropTarget.classList.contains('answer-box') || dropTarget.closest('.answer-box');
+
+            if (isPool || isAnswerBox) {
+                const target = isPool ? letterPool : (dropTarget.classList.contains('answer-box') ? dropTarget : dropTarget.closest('.answer-box'));
+                dropTile(originalTile, target, isPool);
+            }
+        }
+
+        document.body.removeChild(clone);
+        originalTile.style.opacity = '1';
+        clone = null;
+    }
 }
 
-function dropLetter(e, toPool) {
-    e.preventDefault();
-    const letter = e.dataTransfer.getData('text/plain') || e.target.textContent;
-    const index = e.dataTransfer.getData('index') || e.target.dataset.index;
-    const fromPool = e.dataTransfer.getData('fromPool') !== undefined ? e.dataTransfer.getData('fromPool') === 'true' : e.target.parentElement.id === 'letter-pool';
-    const draggedTile = document.querySelector(`.letter-tile[data-index="${index}"]`) || e.target;
+function dropTile(tile, target, toPool) {
+    const letter = tile.textContent;
+    const id = tile.dataset.id;
+    const fromPool = tile.parentElement.id === 'letter-pool';
 
     if (toPool) {
         if (!fromPool) {
-            // Dragging from box to pool
-            shuffledLetters.push(letter);
-            if (draggedTile && draggedTile.parentElement && draggedTile.parentElement !== letterPool) {
-                draggedTile.parentElement.removeChild(draggedTile);
-            }
+            shuffledLetters.push({ letter, id: `tile-${tileIdCounter++}` });
+            tile.parentElement.removeChild(tile);
             renderLetterPool();
         }
     } else {
-        // Dragging to answer box
-        const tile = document.createElement('div');
-        tile.className = 'letter-tile';
-        tile.textContent = letter;
-        tile.draggable = true;
-        tile.dataset.index = index;
-        addDragAndTouchEvents(tile);
-        e.target.appendChild(tile);
+        const newTile = createTile(letter, id);
+        target.appendChild(newTile);
         if (fromPool) {
-            shuffledLetters.splice(index, 1);
+            const index = shuffledLetters.findIndex(item => item.id === id);
+            if (index !== -1) shuffledLetters.splice(index, 1);
+            tile.parentElement.removeChild(tile);
             renderLetterPool();
         } else {
-            if (draggedTile && draggedTile.parentElement && draggedTile.parentElement !== e.target) {
-                draggedTile.parentElement.removeChild(draggedTile);
-            }
+            tile.parentElement.removeChild(tile);
         }
     }
-}
-
-function countLetters(word) {
-    const frequency = {};
-    for (let char of word) {
-        frequency[char] = (frequency[char] || 0) + 1;
-    }
-    return frequency;
 }
 
 submitBtn.addEventListener('click', () => {
     feedback.textContent = '';
     let allCorrect = true;
     const usedWords = new Set();
-    const answerWords = [];
 
     for (let i = 0; i < studyWords.length; i++) {
         const box = document.getElementById(`answer-box-${i}`);
         const submittedLetters = Array.from(box.querySelectorAll('.letter-tile')).map(tile => tile.textContent.toLowerCase());
         const submittedWord = submittedLetters.join('');
-        answerWords.push({ word: submittedWord, boxIndex: i });
-    }
-
-    for (let { word, boxIndex } of answerWords) {
-        const box = document.getElementById(`answer-box-${boxIndex}`);
         let isCorrect = false;
 
         for (let studyWord of studyWords) {
-            if (!usedWords.has(studyWord) && word === studyWord) {
+            if (!usedWords.has(studyWord) && submittedWord === studyWord) {
                 isCorrect = true;
                 usedWords.add(studyWord);
                 break;
@@ -295,7 +313,6 @@ submitBtn.addEventListener('click', () => {
             box.classList.add('incorrect');
             allCorrect = false;
         }
-        console.log(`Box ${boxIndex}: Submitted [${word}], Correct: ${isCorrect}, Used Words: ${[...usedWords]}`);
     }
 
     feedback.textContent = allCorrect ? 'All words are correct!' : 'Some words are incorrect';
@@ -309,75 +326,34 @@ answerBtn.addEventListener('click', () => {
         box.id = `answer-box-${i}`;
         const word = studyWords[i].toLowerCase().split('');
         word.forEach(letter => {
-            const tile = document.createElement('div');
-            tile.className = 'letter-tile';
-            tile.textContent = letter;
-            addDragAndTouchEvents(tile);
+            const tile = createTile(letter, `tile-${tileIdCounter++}`);
+            tile.style.pointerEvents = 'none';
             box.appendChild(tile);
         });
-        box.style.pointerEvents = 'none';
         answerBoxes.appendChild(box);
     }
     feedback.textContent = 'Answers revealed!';
     clearBtn.style.display = 'block';
     submitBtn.style.display = 'none';
     answerBtn.style.display = 'none';
-    replayBtn.style.display = 'block';
-    inputNewWordsBtn.style.display = 'block';
-    restartBtn.style.display = 'block';
 });
 
 clearBtn.addEventListener('click', () => {
-    shuffledLetters = shuffleArray(studyWords.join('').split(''));
+    shuffledLetters = shuffleArray(studyWords.join('').split('')).map((letter, index) => ({
+        letter,
+        id: `tile-${tileIdCounter++}`
+    }));
     answerBoxes.innerHTML = '';
     feedback.textContent = '';
     setupGame();
-    submitBtn.style.display = 'block';
-    answerBtn.style.display = 'block';
-    clearBtn.style.display = 'block';
 });
 
 replayBtn.addEventListener('click', () => {
-    shuffledLetters = shuffleArray(studyWords.join('').split(''));
+    shuffledLetters = shuffleArray(studyWords.join('').split('')).map((letter, index) => ({
+        letter,
+        id: `tile-${tileIdCounter++}`
+    }));
     answerBoxes.innerHTML = '';
     feedback.textContent = '';
     setupGame();
-    submitBtn.style.display = 'block';
-    answerBtn.style.display = 'block';
-    clearBtn.style.display = 'block';
-    inputNewWordsBtn.style.display = 'block';
-    restartBtn.style.display = 'block';
-});
-
-inputNewWordsBtn.addEventListener('click', () => {
-    studyWords = [];
-    shuffledLetters = [];
-    inputPhase.style.display = 'block';
-    studyPhase.style.display = 'none';
-    gamePhase.style.display = 'none';
-    wordList.textContent = '';
-    feedback.textContent = '';
-    startStudyBtn.style.display = 'none';
-    inputNewWordsBtn.style.display = 'none';
-    answerBoxes.innerHTML = '';
-    letterPool.innerHTML = '';
-});
-
-restartBtn.addEventListener('click', () => {
-    studyWords = [];
-    shuffledLetters = [];
-    inputPhase.style.display = 'block';
-    studyPhase.style.display = 'none';
-    gamePhase.style.display = 'none';
-    wordList.textContent = '';
-    feedback.textContent = '';
-    startStudyBtn.style.display = 'none';
-    inputNewWordsBtn.style.display = 'none';
-    answerBoxes.innerHTML = '';
-    letterPool.innerHTML = '';
-    clearBtn.style.display = 'none';
-    submitBtn.style.display = 'none';
-    answerBtn.style.display = 'none';
-    replayBtn.style.display = 'none';
-    restartBtn.style.display = 'none';
 });
