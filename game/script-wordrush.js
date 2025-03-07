@@ -22,8 +22,9 @@ const replayBtn = document.getElementById('replay-btn');
 
 let studyWords = [];
 let shuffledLetters = [];
-let tileIdCounter = 0; // Unique ID for each tile
+let tileIdCounter = 0;
 let timer;
+let selectedBox = null;
 
 addBtn.addEventListener('click', () => {
     const word = wordInput.value.trim().toLowerCase();
@@ -100,6 +101,7 @@ function resetGame(fullReset) {
     studyWords = [];
     shuffledLetters = [];
     tileIdCounter = 0;
+    selectedBox = null;
     inputPhase.style.display = 'block';
     studyPhase.style.display = 'none';
     gamePhase.style.display = 'none';
@@ -128,6 +130,7 @@ function setupGame() {
         const box = document.createElement('div');
         box.className = 'answer-box';
         box.id = `answer-box-${i}`;
+        box.addEventListener('click', () => selectBox(box));
         answerBoxes.appendChild(box);
     }
 
@@ -161,130 +164,48 @@ function createTile(letter, id) {
     tile.className = 'letter-tile';
     tile.textContent = letter;
     tile.dataset.id = id;
-    addInteractionEvents(tile);
+    tile.addEventListener('dblclick', () => {
+        const fromPool = tile.parentElement.id === 'letter-pool';
+        if (fromPool && selectedBox) {
+            moveTileToBox(tile, selectedBox);
+        } else if (!fromPool) {
+            moveTileToPool(tile);
+        }
+    });
     return tile;
 }
 
-function addInteractionEvents(tile) {
-    let isDragging = false;
-    let clone = null;
-    let startX, startY;
-
-    // Desktop Drag Events
-    tile.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        startDragging(tile, e.clientX, e.clientY);
-    });
-
-    // Touch Events
-    tile.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        isDragging = true;
-        startX = touch.clientX;
-        startY = touch.clientY;
-        startDragging(tile, touch.clientX, touch.clientY);
-    }, { passive: false });
-
-    function startDragging(originalTile, x, y) {
-        clone = originalTile.cloneNode(true);
-        clone.style.position = 'absolute';
-        clone.style.zIndex = '1000';
-        clone.style.opacity = '0.8';
-        const rect = originalTile.getBoundingClientRect();
-        clone.style.left = rect.left + 'px';
-        clone.style.top = rect.top + 'px';
-        clone.style.width = rect.width + 'px';
-        clone.style.height = rect.height + 'px';
-        document.body.appendChild(clone);
-        originalTile.style.opacity = '0.5';
+function selectBox(box) {
+    if (selectedBox && selectedBox !== box) {
+        selectedBox.classList.remove('selected');
     }
-
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging && clone) {
-            e.preventDefault();
-            const deltaX = e.clientX - startX;
-            const deltaY = e.clientY - startY;
-            const rect = tile.getBoundingClientRect();
-            clone.style.left = `${rect.left + deltaX}px`;
-            clone.style.top = `${rect.top + deltaY}px`;
-        }
-    });
-
-    document.addEventListener('touchmove', (e) => {
-        if (isDragging && clone) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const deltaX = touch.clientX - startX;
-            const deltaY = touch.clientY - startY;
-            const rect = tile.getBoundingClientRect();
-            clone.style.left = `${rect.left + deltaX}px`;
-            clone.style.top = `${rect.top + deltaY}px`;
-        }
-    }, { passive: false });
-
-    document.addEventListener('mouseup', (e) => {
-        if (isDragging && clone) {
-            handleDrop(tile, e.clientX, e.clientY);
-            isDragging = false;
-        }
-    });
-
-    document.addEventListener('touchend', (e) => {
-        if (isDragging && clone) {
-            const touch = e.changedTouches[0];
-            handleDrop(tile, touch.clientX, touch.clientY);
-            isDragging = false;
-        }
-    }, { passive: false });
-
-    function handleDrop(originalTile, x, y) {
-        clone.style.display = 'none';
-        const dropTarget = document.elementFromPoint(x, y);
-        clone.style.display = 'block';
-
-        if (dropTarget) {
-            const isPool = dropTarget.id === 'letter-pool' || dropTarget.closest('#letter-pool');
-            const isAnswerBox = dropTarget.classList.contains('answer-box') || dropTarget.closest('.answer-box');
-
-            if (isPool || isAnswerBox) {
-                const target = isPool ? letterPool : (dropTarget.classList.contains('answer-box') ? dropTarget : dropTarget.closest('.answer-box'));
-                dropTile(originalTile, target, isPool);
-            }
-        }
-
-        document.body.removeChild(clone);
-        originalTile.style.opacity = '1';
-        clone = null;
+    if (selectedBox === box) {
+        box.classList.remove('selected');
+        selectedBox = null;
+    } else {
+        box.classList.add('selected');
+        selectedBox = box;
     }
 }
 
-function dropTile(tile, target, toPool) {
+function moveTileToBox(tile, box) {
     const letter = tile.textContent;
     const id = tile.dataset.id;
-    const fromPool = tile.parentElement.id === 'letter-pool';
-
-    if (toPool) {
-        if (!fromPool) {
-            shuffledLetters.push({ letter, id: `tile-${tileIdCounter++}` });
-            tile.parentElement.removeChild(tile);
-            renderLetterPool();
-        }
-    } else {
-        const newTile = createTile(letter, id);
-        target.appendChild(newTile);
-        if (fromPool) {
-            const index = shuffledLetters.findIndex(item => item.id === id);
-            if (index !== -1) shuffledLetters.splice(index, 1);
-            tile.parentElement.removeChild(tile);
-            renderLetterPool();
-        } else {
-            tile.parentElement.removeChild(tile);
-        }
+    const newTile = createTile(letter, id);
+    box.appendChild(newTile);
+    const index = shuffledLetters.findIndex(item => item.id === id);
+    if (index !== -1) {
+        shuffledLetters.splice(index, 1);
+        tile.parentElement.removeChild(tile);
+        renderLetterPool();
     }
+}
+
+function moveTileToPool(tile) {
+    const letter = tile.textContent;
+    shuffledLetters.push({ letter, id: `tile-${tileIdCounter++}` });
+    tile.parentElement.removeChild(tile);
+    renderLetterPool();
 }
 
 submitBtn.addEventListener('click', () => {
@@ -345,6 +266,7 @@ clearBtn.addEventListener('click', () => {
     }));
     answerBoxes.innerHTML = '';
     feedback.textContent = '';
+    selectedBox = null;
     setupGame();
 });
 
@@ -355,5 +277,6 @@ replayBtn.addEventListener('click', () => {
     }));
     answerBoxes.innerHTML = '';
     feedback.textContent = '';
+    selectedBox = null;
     setupGame();
 });

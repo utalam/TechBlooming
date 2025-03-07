@@ -10,8 +10,8 @@ body {
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
-    touch-action: none; /* Prevent scrolling during drag */
-    overscroll-behavior: none; /* Prevent pull-to-refresh */
+    touch-action: manipulation; /* Allow tapping without interference */
+    overscroll-behavior: none;
 }
 
 .game-container {
@@ -114,6 +114,12 @@ h1 {
     gap: 15px;
     background: #E6E6FA;
     border-radius: 20px;
+    cursor: pointer; /* Indicate tappability */
+}
+
+.answer-box.selected {
+    border-color: #FFD700;
+    background: #FFFACD;
 }
 
 .answer-box.correct {
@@ -147,9 +153,8 @@ h1 {
     justify-content: center;
     font-size: 1.7em;
     border-radius: 50%;
-    cursor: move;
+    cursor: pointer; /* Indicate tappability */
     user-select: none;
-    touch-action: none;
     transition: transform 0.2s;
     -webkit-tap-highlight-color: transparent;
 }
