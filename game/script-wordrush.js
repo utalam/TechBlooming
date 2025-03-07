@@ -130,7 +130,10 @@ function setupGame() {
         const box = document.createElement('div');
         box.className = 'answer-box';
         box.id = `answer-box-${i}`;
-        box.addEventListener('click', () => selectBox(box));
+        box.addEventListener('click', (e) => {
+            e.preventDefault();
+            selectBox(box);
+        });
         answerBoxes.appendChild(box);
     }
 
@@ -164,7 +167,8 @@ function createTile(letter, id) {
     tile.className = 'letter-tile';
     tile.textContent = letter;
     tile.dataset.id = id;
-    tile.addEventListener('dblclick', () => {
+    tile.addEventListener('click', (e) => {
+        e.preventDefault();
         const fromPool = tile.parentElement.id === 'letter-pool';
         if (fromPool && selectedBox) {
             moveTileToBox(tile, selectedBox);
