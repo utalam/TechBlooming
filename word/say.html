@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Synonyms App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: white;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    .play-btn {
+      background-color: #d3e8f0;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+    }
+    .main-word {
+      background-color: #ff8c38;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 24px;
+      margin: 15px 0;
+      text-transform: uppercase;
+    }
+    .subheader {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .synonym {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      gap: 15px; /* Added spacing between synonym button and play button */
+    }
+    .synonym button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      width: 80%;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .synonym button:hover {
+      background-color: #357abd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+       <img height="75px" src="view-3d-aviator-bird.png" />
+      <h2>How to say</h2>
+      <button class="play-btn" onclick="speak('demonstrate')">▶</button>
+    </div>
+    <div class="main-word">DEMONSTRATE</div>
+    <div class="subheader">Words with similar meaning</div>
+    <div class="synonym">
+      <button>Prove</button>
+      <button class="play-btn" onclick="speak('prove')">▶</button>
+    </div>
+    <div class="synonym">
+      <button>Reveal</button>
+      <button class="play-btn" onclick="speak('reveal')">▶</button>
+    </div>
+    <div class="synonym">
+      <button>Show</button>
+      <button class="play-btn" onclick="speak('show')">▶</button>
+    </div>
+  </div>
+
+  <script>
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+    }
+  </script>
+</body>
+</html>
